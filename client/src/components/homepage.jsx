@@ -6,7 +6,7 @@ function HomePage() {
         <div>
             <NavBar />
             <h1>
-                test
+                HomePage
             </h1>
         </div>
     )

@@ -1,15 +1,15 @@
 import React from 'react';
 import NavBar from '../materialComponents/navbar'
 
-function dashBoard() {
+function noMatch() {
     return (
         <div>
             <NavBar />
             <h1>
-                Dashboard
+                404
             </h1>
         </div>
     )
 }
 
-export default dashBoard;
+export default noMatch;
