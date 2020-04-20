@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import NavBar from '../materialComponents/navbar'
+import { GreenButton } from './styledComponents'
 
 function Copyright() {
     return (
@@ -89,7 +90,7 @@ export default function SignIn() {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
-                        <Button
+                        <GreenButton
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -97,7 +98,7 @@ export default function SignIn() {
                             className={classes.submit}
                         >
                             Sign In
-          </Button>
+          </GreenButton>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">

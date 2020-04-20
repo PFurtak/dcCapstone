@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import NavBar from '../materialComponents/navbar'
+import { GreenButton } from './styledComponents'
+
 
 function Copyright() {
     return (
@@ -117,7 +119,7 @@ export default function SignUp() {
                                 />
                             </Grid>
                         </Grid>
-                        <Button
+                        <GreenButton
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -125,7 +127,7 @@ export default function SignUp() {
                             className={classes.submit}
                         >
                             Sign Up
-          </Button>
+                        </GreenButton>
                         <Grid container justify="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2">
