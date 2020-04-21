@@ -54,7 +54,9 @@ class TopBar extends Component {
       >
         <div className="container header-container">
           <div className="brand">
-            <img src="./assets/images/logo-full.png" alt="" />
+            <a href="/">
+              <img src="./assets/images/logo-full.png" alt="" />
+            </a>
           </div>
           {/* <ul className="navigation">
             <li>

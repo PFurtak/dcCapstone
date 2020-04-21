@@ -1,24 +1,31 @@
 import React, { Component } from "react";
 import Icon from "@material-ui/core/Icon";
 import { Button } from "@material-ui/core";
+import ShowChartIcon from "@material-ui/icons/ShowChart";
 
 class Intro2 extends Component {
   state = {};
   render() {
     return (
-      <section className="section section-intro1 section-intro2" id="intro2"
-      style={{background: 'url(./assets/images/home-bg-black.png) center center/cover no-repeat'}}>
+      <section
+        className="section section-intro1 section-intro2"
+        id="intro2"
+        style={{
+          background:
+            "url(./assets/images/home-bg-black.png) center center/cover no-repeat",
+        }}
+      >
         <div className="container">
           <div className="text-center">
             <div className="section-intro1__subtitle mb-24 text-secondary">
-              Build More; Sell More;
+              Stonks JS
             </div>
             <h1 className="section-intro1__title">
-              Marketing Automation Redefined
+              Build and track your dream fund.
             </h1>
             <p className="intro1__description">
-             The most poerfull marketing automation platform you have ever used.
-             No hidden charge, pay as you use!
+              The most powerful tool to build and track your own market index
+              funds. Sign up now for free to start tracking.
             </p>
             <div>
               <Button
@@ -26,9 +33,10 @@ class Intro2 extends Component {
                 variant="contained"
                 size="large"
                 aria-label="Buy"
+                href="/signup"
               >
-                <Icon className="mr-16">flight_takeoff</Icon>
-                Start 7 day trial
+                <ShowChartIcon className="mr-16" />
+                Sign up
               </Button>
             </div>
           </div>
