@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import NavBar from "../materialComponents/navbar";
+import TopBar from "./sections/TopBar1";
 import { GreenButton, BlackLink } from "./styledComponents";
 
 function Copyright() {
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   error: {},
   disabled: {},
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(25),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -67,7 +67,9 @@ export default function SignIn() {
 
   return (
     <>
-      <NavBar />
+      <div className="landing">
+        <TopBar />
+      </div>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
