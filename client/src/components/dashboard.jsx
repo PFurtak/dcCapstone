@@ -1,15 +1,13 @@
-import React from 'react';
-import NavBar from '../materialComponents/navbar'
+import React from "react";
+import TopBar from "./sections/TopBar1";
 
 function dashBoard() {
-    return (
-        <div>
-            <NavBar />
-            <h1>
-                Dashboard
-            </h1>
-        </div>
-    )
+  return (
+    <div>
+      <TopBar />
+      <h1>Dashboard</h1>
+    </div>
+  );
 }
 
 export default dashBoard;
