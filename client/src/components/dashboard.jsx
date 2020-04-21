@@ -4,8 +4,12 @@ import TopBar from "./sections/TopBar1";
 function dashBoard() {
   return (
     <div>
-      <TopBar />
-      <h1>Dashboard</h1>
+      <div className="landing">
+        <TopBar />
+        <div className="dashboard">
+          <h2>dashBoard</h2>
+        </div>
+      </div>
     </div>
   );
 }

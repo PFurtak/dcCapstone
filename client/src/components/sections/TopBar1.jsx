@@ -4,6 +4,7 @@ import Icon from "@material-ui/core/Icon";
 import IconButton from "@material-ui/core/IconButton";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import Typography from "@material-ui/core/Typography";
 import { NavLink } from "react-router-dom";
 import ScrollTo from "../common/ScrollTo";
 
@@ -54,9 +55,12 @@ class TopBar extends Component {
       >
         <div className="container header-container">
           <div className="brand">
-            <a href="/">
-              <img src="./assets/images/logo-full.png" alt="" />
-            </a>
+            <Typography variant="h4">
+              <a href="/">
+                {/* <img src="./assets/images/logo-full.png" alt="" /> */}
+                Stonks.js
+              </a>
+            </Typography>
           </div>
           {/* <ul className="navigation">
             <li>
