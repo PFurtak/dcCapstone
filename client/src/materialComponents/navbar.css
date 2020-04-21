@@ -9,14 +9,14 @@ Glitzy Gold = #D7A02B
 */
 
 .title {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .navBar {
-    background-color: #2F2F2F;
+  background-color: #2f2f2f;
 }
 
 .title a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
