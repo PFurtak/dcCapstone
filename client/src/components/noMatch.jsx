@@ -1,10 +1,9 @@
 import React from "react";
-import NavBar from "../materialComponents/navbar";
-
+import TopBar from "./sections/TopBar1";
 function noMatch() {
   return (
     <div>
-      <NavBar />
+      <TopBar />
       <h1>404</h1>
     </div>
   );
