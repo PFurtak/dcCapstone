@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
+import MaterialTable from 'material-table';
+
 
 
 class InputFund extends Component {
@@ -12,7 +14,20 @@ class InputFund extends Component {
         quote: 0, 
         pickedSecurity: {}, 
         amountToInvest: 0,
-        shareAmount: 0
+        shareAmount: 0, 
+        columns: [
+            { title: 'Security', field: 'security' },
+            { title: 'Ticker', field: 'ticker' },
+            { title: 'Last Price', field: 'lastPrice', type: 'numeric' },
+            {  title: 'Amount', field: 'amount', type: 'numeric' },
+            {  title: 'Price When Added', field: 'priceWhenAdded', type: 'numeric' },
+
+          ],
+        data: [
+            { security: 'Ford', ticker: 'F', lastPrice: 5.32, amount: 4000, priceWhenAdded: 4.53 },
+           
+          ],
+
     }
 
     getQuote = async()=> {
@@ -68,11 +83,18 @@ class InputFund extends Component {
 
       }
 
-
+      onFundAdd = () =>{
+          const {input, quote, pickedSecurity, shareAmount, amountToInvest, data} = this.state;
+          const newData = { security: pickedSecurity.securityName, ticker: input, lastPrice: quote, amount: amountToInvest, priceWhenAdded: quote}
+           this.setState({
+               data: [...data, newData]
+           })
+        }
+      
     render(){
         const {searchArray, quote, shareAmount} = this.state;
         return(
-            <div style={{ width: 300 }}>
+            <div style={{ width: 800 }}>
                 <Autocomplete
                 id="stockInput"
                 onChange={(event, newValue) => {
@@ -122,9 +144,27 @@ class InputFund extends Component {
                 />
                   <br/>
                 <br/>
-                <Button variant="contained" color="primary">
+                <Button onClick={this.onFundAdd} variant="contained" color="primary">
                     Add Security 
                 </Button>
+                <MaterialTable
+                    title="Fund Name"
+                    columns={this.state.columns}
+                    data={this.state.data}
+                    editable={{
+                        onRowDelete: (oldData) =>
+                        new Promise((resolve) => {
+                            setTimeout(() => {
+                            resolve();
+                            this.setState((prevState) => {
+                                const data = [...prevState.data];
+                                data.splice(data.indexOf(oldData), 1);
+                                return { ...prevState, data };
+                            });
+                            }, 600);
+                        }),
+                    }}
+    />
         </div>
         )
     }
