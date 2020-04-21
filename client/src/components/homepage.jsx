@@ -1,5 +1,5 @@
-import React from "react";
-import NavBar from "../materialComponents/navbar";
+import React from 'react';
+import NavBar from '../materialComponents/navbar';
 
 function HomePage() {
   return (
