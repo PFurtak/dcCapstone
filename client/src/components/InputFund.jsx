@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import MaterialTable from 'material-table';
-import TableFooter from '@material-ui/core/TableFooter';
-
+import React, { Component } from "react";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import MaterialTable from "material-table";
+import TableFooter from "@material-ui/core/TableFooter";
 
 class InputFund extends Component {
   state = {
-    input: '',
+    input: "",
     searchArray: [],
     quote: 0,
     pickedSecurity: {},
     amountToInvest: 0,
     shareAmount: 0,
     columns: [
-      { title: 'Security', field: 'security' },
-      { title: 'Ticker', field: 'ticker' },
-      { title: 'Last Price', field: 'lastPrice', type: 'numeric' },
-      { title: 'Amount', field: 'amount', type: 'numeric' },
-      { title: 'Price When Added', field: 'priceWhenAdded', type: 'numeric' },
-      {title: "Date When Added", field: 'dateWhenAdded', type: 'date'}
-
+      { title: "Security", field: "security" },
+      { title: "Ticker", field: "ticker" },
+      { title: "Last Price", field: "lastPrice", type: "numeric" },
+      { title: "Amount", field: "amount", type: "numeric" },
+      { title: "Price When Added", field: "priceWhenAdded", type: "numeric" },
+      { title: "Date When Added", field: "dateWhenAdded", type: "date" },
     ],
     data: [],
-    fundName: ""
+    fundName: "",
   };
 
   getQuote = async () => {
@@ -60,10 +58,12 @@ class InputFund extends Component {
   };
 
   setInput = (param) => {
-    this.setState({
-      input: param.symbol,
-      pickedSecurity: param,
-    });
+    try {
+      this.setState({
+        input: param.symbol,
+        pickedSecurity: param,
+      });
+    } catch {}
   };
 
   amountToInvestInput = (event) => {
@@ -76,13 +76,13 @@ class InputFund extends Component {
     );
   };
 
-  calculateShareAmount =()=> {
+  calculateShareAmount = () => {
     const { amountToInvest, quote } = this.state;
     const numberOfShares = amountToInvest / quote;
     this.setState({
       shareAmount: numberOfShares,
     });
-  }
+  };
 
   onFundAdd = () => {
     const {
@@ -99,71 +99,71 @@ class InputFund extends Component {
       lastPrice: quote,
       amount: amountToInvest,
       priceWhenAdded: quote,
-      dateWhenAdded: new Date()
+      dateWhenAdded: new Date(),
     };
     this.setState({
       data: [...data, newData],
     });
   };
 
-  setFundName = (event) =>{
-      this.setState({
-          fundName: event.target.value
-      })
-  }
+  setFundName = (event) => {
+    this.setState({
+      fundName: event.target.value,
+    });
+  };
 
   render() {
-    const { searchArray, quote, shareAmount, fundName} = this.state;
+    const { searchArray, quote, shareAmount, fundName } = this.state;
     return (
       <div style={{ width: 800 }}>
         <TextField
-          id='fundName'
-          label='Name your Fund'
-          variant='outlined'
+          id="fundName"
+          label="Name your Fund"
+          variant="outlined"
           onChange={this.setFundName}
         />
         <Autocomplete
-          id='stockInput'
+          id="stockInput"
           onChange={(event, newValue) => {
             this.setInput(newValue);
           }}
           onInputChange={this.autoComplete}
           onSelect={this.getQuote}
           options={searchArray}
-          getOptionLabel={(stock) => stock.symbol + ' ' + stock.securityName}
+          getOptionLabel={(stock) => stock.symbol + " " + stock.securityName}
           renderInput={(params) => (
             <TextField
               {...params}
-              label='Select Company Ticker'
-              margin='normal'
-              variant='outlined'
+              label="Select Company Ticker"
+              margin="normal"
+              variant="outlined"
             />
           )}
         />
         <br />
         <TextField
-          id='lastPrice'
-          label='Last Price'
+          id="lastPrice"
+          label="Last Price"
           value={quote}
           InputProps={{
             readOnly: true,
           }}
-          variant='outlined'
+          variant="outlined"
         />
         <br />
         <br />
         <TextField
-          id='amountToInvest'
-          label='Amount to Invest'
-          variant='outlined'
+          id="amountToInvest"
+          label="Amount to Invest"
+          variant="outlined"
           onChange={this.amountToInvestInput}
         />
         <br />
         <br />
         <TextField
-          id='amountOfShares'
-          label='Amount of Shares'
-          variant='outlined'
+          id="amountOfShares"
+          label="Amount of Shares"
+          variant="outlined"
           InputProps={{
             readOnly: true,
           }}
@@ -171,7 +171,7 @@ class InputFund extends Component {
         />
         <br />
         <br />
-        <Button onClick={this.onFundAdd} variant='contained' color='primary'>
+        <Button onClick={this.onFundAdd} variant="contained" color="primary">
           Add Security
         </Button>
         <MaterialTable
@@ -192,7 +192,7 @@ class InputFund extends Component {
               }),
           }}
         />
-          <Button variant='contained' color='primary'>
+        <Button variant="contained" color="primary">
           Save Fund
         </Button>
       </div>
