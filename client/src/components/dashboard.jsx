@@ -53,7 +53,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ResponsiveDrawer(props) {
+const ResponsiveDrawer = (props) => {
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    authContext.loadUser();
+    //eslint-disable-next-line
+  }, []);
+
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -175,7 +182,7 @@ function ResponsiveDrawer(props) {
       </main>
     </div>
   );
-}
+};
 
 ResponsiveDrawer.propTypes = {
   /**
