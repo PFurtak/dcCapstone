@@ -20,8 +20,11 @@ class InputFund extends Component {
       { title: 'Last Price', field: 'lastPrice', type: 'numeric' },
       { title: 'Amount', field: 'amount', type: 'numeric' },
       { title: 'Price When Added', field: 'priceWhenAdded', type: 'numeric' },
+      {title: "Date When Added", field: 'dateWhenAdded', type: 'date'}
+
     ],
     data: [],
+    fundName: ""
   };
 
   getQuote = async () => {
@@ -73,7 +76,7 @@ class InputFund extends Component {
     );
   };
 
-  calculateShareAmount() {
+  calculateShareAmount =()=> {
     const { amountToInvest, quote } = this.state;
     const numberOfShares = amountToInvest / quote;
     this.setState({
@@ -96,16 +99,29 @@ class InputFund extends Component {
       lastPrice: quote,
       amount: amountToInvest,
       priceWhenAdded: quote,
+      dateWhenAdded: new Date()
     };
     this.setState({
       data: [...data, newData],
     });
   };
 
+  setFundName = (event) =>{
+      this.setState({
+          fundName: event.target.value
+      })
+  }
+
   render() {
-    const { searchArray, quote, shareAmount } = this.state;
+    const { searchArray, quote, shareAmount, fundName} = this.state;
     return (
       <div style={{ width: 800 }}>
+        <TextField
+          id='fundName'
+          label='Name your Fund'
+          variant='outlined'
+          onChange={this.setFundName}
+        />
         <Autocomplete
           id='stockInput'
           onChange={(event, newValue) => {
@@ -159,7 +175,7 @@ class InputFund extends Component {
           Add Security
         </Button>
         <MaterialTable
-          title='Fund Name'
+          title={fundName}
           columns={this.state.columns}
           data={this.state.data}
           editable={{
@@ -176,6 +192,9 @@ class InputFund extends Component {
               }),
           }}
         />
+          <Button variant='contained' color='primary'>
+          Save Fund
+        </Button>
       </div>
     );
   }
