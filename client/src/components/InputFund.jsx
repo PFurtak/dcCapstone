@@ -23,10 +23,7 @@ class InputFund extends Component {
             {  title: 'Price When Added', field: 'priceWhenAdded', type: 'numeric' },
 
           ],
-        data: [
-            { security: 'Ford', ticker: 'F', lastPrice: 5.32, amount: 4000, priceWhenAdded: 4.53 },
-           
-          ],
+        data: []
 
     }
 

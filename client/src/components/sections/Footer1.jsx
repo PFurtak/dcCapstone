@@ -12,14 +12,9 @@ class Footer1 extends Component {
               <div className="footer1__about">
                 <h4>About Us</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Officiis perferendis rem, aut aliquam neque nam? dolor sit
-                  amet, consectetur adipisicing elit consectetur adipisicing
-                  elit. Officiis perferendis rem, aut aliquam.
+                  Founded by three Web Developers in Atlanta, Georgia. Stonks.js
+                  aims to be the best and most versatile index tool out there.
                 </p>
-                <Button variant="contained" color="secondary">
-                  Contact Us
-                </Button>
               </div>
             </Grid>
             <Grid item lg={3} md={3} sm={12}>
@@ -29,14 +24,13 @@ class Footer1 extends Component {
                   <Icon className="footer1__contact__icon">mail</Icon>
                   <div className="pl-16">
                     <h5 className="m-0 p-0">Email</h5>
-                    <p className="m-0 p-0">email@abc.com</p>
+                    <p className="m-0 p-0">Admin@stonksjs.com</p>
                   </div>
                 </div>
                 <div className="px-16 mt-32">
                   <Icon className="footer1__contact__icon">location_on</Icon>
                   <div className="pl-16">
-                    <h5 className="m-0 p-0">Adress</h5>
-                    <p className="m-0 p-0">Topoban, Akhalia Sylhet 3114, BD</p>
+                    <h5 className="m-0 p-0">Atlanta, Georgia</h5>
                   </div>
                 </div>
               </div>
@@ -45,22 +39,10 @@ class Footer1 extends Component {
               <div className="footer1__disclaimer">
                 <h4>Disclaimer</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Officiis perferendis rem, aut aliquam neque nam?
+                  Inspired by historical events and characters. This work of
+                  fiction was designed, developed and produced by a
+                  multicultural team of various religious faiths and beliefs.
                 </p>
-
-                <div className="mt-32 footer1__disclaimer__link">
-                  <a href="#linkedin" className="px-8">
-                    <img src="./assets/images/social-linkedin.png" alt="" />
-                  </a>
-                  <a href="#twitter" className="px-8">
-                    <img src="./assets/images/social-twitter.png" alt="" />
-                  </a>
-                  <a href="#facebook" className="px-8">
-                    <img src="./assets/images/social-facebook.png" alt="" />
-                  </a>
-                  
-                </div>
               </div>
             </Grid>
           </Grid>
