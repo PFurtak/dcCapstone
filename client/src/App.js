@@ -7,6 +7,7 @@ import DashBoard from "./components/dashboard";
 import NoMatch from "./components/noMatch";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AuthState from "./context/auth/AuthState";
+import CreateFund from "./components/createfund";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/dashboard" component={DashBoard} />
+          <Route path="/createfund" component={CreateFund} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
