@@ -9,6 +9,7 @@ import CallToAction1 from "./sections/CallToAction1";
 import Pricing1 from "./sections/Pricing1";
 import Contact1 from "./sections/Contact1";
 import Footer1 from "./sections/Footer1";
+import InputFund from './InputFund';
 
 class Landing1 extends Component {
   state = {};
@@ -22,6 +23,7 @@ class Landing1 extends Component {
         <Intro2 />
         <Services1 />
         <CallToAction1 />
+        <InputFund/>
         <Footer1 />
       </div>
     );

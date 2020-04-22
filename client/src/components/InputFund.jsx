@@ -3,12 +3,15 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MaterialTable from 'material-table';
+import TableFooter from '@material-ui/core/TableFooter';
+
 
 
 
 class InputFund extends Component {
-    
+   
     state = {
+        test: 4334,
         input: "",
         searchArray: [], 
         quote: 0, 
@@ -21,9 +24,13 @@ class InputFund extends Component {
             { title: 'Last Price', field: 'lastPrice', type: 'numeric' },
             {  title: 'Amount', field: 'amount', type: 'numeric' },
             {  title: 'Price When Added', field: 'priceWhenAdded', type: 'numeric' },
+            {  title: 'Allocation %', field: 'allocation', type: 'numeric'},
+
 
           ],
+        totalAmountToInvest: 0,
         data: []
+
 
     }
 
@@ -48,7 +55,6 @@ class InputFund extends Component {
     }
   
      autoComplete = async(event) => {
-        const {input} = this.state
         await this.setState({
             input: event.target.value
           }, this.searchInput);
@@ -56,16 +62,16 @@ class InputFund extends Component {
       }
 
       setInput = param => {
-          this.setState({
+          
+            this.setState({
               input: param.symbol,
               pickedSecurity: param
           })
       }
 
       amountToInvestInput =  event => {
-        const {amountToInvest, quote} = this.state
         this.setState({
-            amountToInvest: event.target.value,
+            amountToInvest: parseFloat(event.target.value),
         }, this.calculateShareAmount)
         
       }
@@ -75,17 +81,43 @@ class InputFund extends Component {
         const {amountToInvest, quote} = this.state
         const numberOfShares= amountToInvest / quote; 
         this.setState({
-            shareAmount: numberOfShares
+            shareAmount: numberOfShares,
+
         })
 
       }
 
-      onFundAdd = () =>{
-          const {input, quote, pickedSecurity, shareAmount, amountToInvest, data} = this.state;
-          const newData = { security: pickedSecurity.securityName, ticker: input, lastPrice: quote, amount: amountToInvest, priceWhenAdded: quote}
+      setTotalAmountToInvest(){
+        const {input, quote, pickedSecurity, shareAmount, amountToInvest, data, totalAmountToInvest} = this.state;
+          this.setState({
+              totalAmountToInvest: totalAmountToInvest + amountToInvest
+          })
+      }
+
+      setNewData(){
+        const {input, quote, pickedSecurity, shareAmount, amountToInvest, data, totalAmountToInvest} = this.state;
+        const newData = { 
+            security: pickedSecurity.securityName, 
+            ticker: input, 
+            lastPrice: quote, 
+            amount: amountToInvest,
+            priceWhenAdded: quote, 
+            allocation: amountToInvest /totalAmountToInvest
+          }
+          return newData;
+      }
+
+      onFundAdd = async () =>{
+          const {input, quote, pickedSecurity, shareAmount, amountToInvest, data, totalAmountToInvest} = this.state;
+           await this.setTotalAmountToInvest() 
+            const newData = await this.setNewData()
+            const sum = {
+                amount: amountToInvest
+            }
            this.setState({
-               data: [...data, newData]
+            data: [...data, newData],
            })
+
         }
       
     render(){
@@ -144,10 +176,14 @@ class InputFund extends Component {
                 <Button onClick={this.onFundAdd} variant="contained" color="primary">
                     Add Security 
                 </Button>
+                <form> 
                 <MaterialTable
                     title="Fund Name"
                     columns={this.state.columns}
                     data={this.state.data}
+                    options={{
+                        exportButton: true
+                      }}
                     editable={{
                         onRowDelete: (oldData) =>
                         new Promise((resolve) => {
@@ -161,8 +197,12 @@ class InputFund extends Component {
                             }, 600);
                         }),
                     }}
-    />
-        </div>
+                 >                       
+
+
+            </MaterialTable>
+            </form>
+                </div>
         )
     }
 }
