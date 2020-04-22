@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import TopBar from './sections/TopBar1';
 import { GreenButton, BlackLink } from './styledComponents';
 import AuthContext from '../context/auth/authContext';
+import { CLEAR_ERRORS } from '../context/types';
 
 function Copyright() {
   return (
@@ -64,15 +65,16 @@ const SignUp = (props) => {
   const authContext = useContext(AuthContext);
   const classes = useStyles();
 
-  const { register, error, isAuthenticated } = authContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/dashboard');
     }
 
     if (error === 'User already exists') {
       alert(error);
+      clearErrors();
     }
     // eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
