@@ -16,6 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 
 const drawerWidth = 240;
 
@@ -67,14 +68,24 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Dashboard", "Create fund", "Logout"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button>
+          <ListItemIcon>
+            <i class="material-icons">dashboard</i>
+          </ListItemIcon>
+          <ListItemText>Dashboard</ListItemText>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <i class="material-icons">add</i>
+          </ListItemIcon>
+          <ListItemText>Create Fund</ListItemText>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <i class="material-icons">meeting_room</i>
+          </ListItemIcon>
+          <ListItemText>Logout</ListItemText>
+        </ListItem>
       </List>
       <Divider />
     </div>
