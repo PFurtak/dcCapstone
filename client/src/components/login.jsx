@@ -74,7 +74,7 @@ const Login = (props) => {
       props.history.push('/dashboard');
     }
 
-    if (error === 'Invalid credentials.') {
+    if (error) {
       alert(error);
       clearErrors();
     }
@@ -116,7 +116,7 @@ const Login = (props) => {
           <Typography component='h1' variant='h5'>
             Login
           </Typography>
-          <form className={classes.form} onSubmit={onSubmit} noValidate>
+          <form className={classes.form} onSubmit={onSubmit}>
             <TextField
               className={classes.root}
               variant='outlined'
@@ -126,6 +126,7 @@ const Login = (props) => {
               id='email'
               label='Email Address'
               name='email'
+              type='email'
               value={email}
               onChange={onChange}
               autoComplete='email'
