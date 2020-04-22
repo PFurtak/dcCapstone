@@ -8,6 +8,7 @@ import NoMatch from "./components/noMatch";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AuthState from "./context/auth/AuthState";
 import CreateFund from "./components/createfund";
+import TopBar from "./components/sections/TopBar1";
 
 function App() {
   return (
