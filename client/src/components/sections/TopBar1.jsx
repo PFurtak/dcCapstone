@@ -46,23 +46,24 @@ class TopBar extends Component {
   render() {
     let toggleIcon = this.state.isClosed ? "menu" : "close";
     return (
-      <section
-        className={classList({
-          header: true,
-          "header-fixed": !this.state.isTop,
-          closed: this.state.isClosed,
-        })}
-      >
-        <div className="container header-container">
-          <div className="brand">
-            <Typography variant="h4">
-              <a href="/">
-                {/* <img src="./assets/images/logo-full.png" alt="" /> */}
-                Stonks.js
-              </a>
-            </Typography>
-          </div>
-          {/* <ul className="navigation">
+      <div className="landing">
+        <section
+          className={classList({
+            header: true,
+            "header-fixed": !this.state.isTop,
+            closed: this.state.isClosed,
+          })}
+        >
+          <div className="container header-container">
+            <div className="brand">
+              <Typography variant="h4">
+                <a href="/">
+                  {/* <img src="./assets/images/logo-full.png" alt="" /> */}
+                  Stonks.js
+                </a>
+              </Typography>
+            </div>
+            {/* <ul className="navigation">
             <li>
               <NavLink to="/">Demos</NavLink>
             </li>
@@ -93,30 +94,31 @@ class TopBar extends Component {
               </ScrollTo>
             </li>
           </ul> */}
-          <div className="m-auto" />
-          <ul className="navigation">
-            <li>
-              <a href="/signup">
-                <AssignmentIcon className="mr-16" />
-                Sign Up
-              </a>
-            </li>
-            <li>
-              <a href="/login">
-                <VpnKeyIcon className="mr-16" /> Log In
-              </a>
-            </li>
-          </ul>
-          <IconButton
-            className="header__toggle"
-            onClick={() => {
-              this.setState({ isClosed: !this.state.isClosed });
-            }}
-          >
-            <Icon>{toggleIcon}</Icon>
-          </IconButton>
-        </div>
-      </section>
+            <div className="m-auto" />
+            <ul className="navigation">
+              <li>
+                <a href="/signup">
+                  <AssignmentIcon className="mr-16" />
+                  Sign Up
+                </a>
+              </li>
+              <li>
+                <a href="/login">
+                  <VpnKeyIcon className="mr-16" /> Log In
+                </a>
+              </li>
+            </ul>
+            <IconButton
+              className="header__toggle"
+              onClick={() => {
+                this.setState({ isClosed: !this.state.isClosed });
+              }}
+            >
+              <Icon>{toggleIcon}</Icon>
+            </IconButton>
+          </div>
+        </section>
+      </div>
     );
   }
 }
