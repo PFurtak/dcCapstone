@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
+
   const { logout } = authContext;
 
   const onClick = (e) => {
@@ -84,7 +85,7 @@ const ResponsiveDrawer = (props) => {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <i class='material-icons'>dashboard</i>
+            <i className='material-icons'>dashboard</i>
           </ListItemIcon>
           <ListItemText>
             <a href='/dashboard'>Dashboard</a>
@@ -92,7 +93,7 @@ const ResponsiveDrawer = (props) => {
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <i class='material-icons'>add</i>
+            <i className='material-icons'>add</i>
           </ListItemIcon>
           <ListItemText>
             <a href='/createfund'>Create Fund</a>
@@ -101,7 +102,7 @@ const ResponsiveDrawer = (props) => {
 
         <ListItem onClick={onClick} button>
           <ListItemIcon>
-            <i class='material-icons'>meeting_room</i>
+            <i className='material-icons'>meeting_room</i>
           </ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </ListItem>
