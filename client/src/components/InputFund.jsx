@@ -58,22 +58,12 @@ class InputFund extends Component {
   };
 
   setInput = (param) => {
-<<<<<<< HEAD
-    try {this.setState({
-      input: param.symbol,
-      pickedSecurity: param,
-    })}
-    catch {
-        
-    }
-=======
     try {
       this.setState({
         input: param.symbol,
         pickedSecurity: param,
       });
     } catch {}
->>>>>>> 32093166cc03e7e9edeb6f3669ee063493131515
   };
 
   amountToInvestInput = (event) => {
