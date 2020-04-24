@@ -52,18 +52,20 @@ const InputFund = () => {
       `https://cloud.iexapis.com/stable/search/${input}?token=sk_2fac0c511a7f481e85a5f5928838a339`
     );
     await setFundInput({
+      ...fundInput,
       searchArray: res.data,
     });
-    await console.log(res.data);
   };
+
+  useEffect(() => {
+    searchInput();
+  }, [input]);
 
   const autoComplete = async (event) => {
     await setFundInput({
       ...fundInput,
       input: event.target.value,
     });
-
-    searchInput();
   };
 
   const setInput = async (param) => {
@@ -117,6 +119,7 @@ const InputFund = () => {
       />
       <Autocomplete
         id='stockInput'
+        onChange={setInput}
         onInputChange={autoComplete}
         // onSelect={getQuote}
         options={searchArray}
