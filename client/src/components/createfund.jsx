@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import AuthContext from '../context/auth/authContext';
+import FundContext from '../context/funds/fundContext';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -56,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
+  const fundContext = useContext(FundContext);
   const { logout } = authContext;
 
   const onClick = (e) => {
@@ -84,7 +86,7 @@ const ResponsiveDrawer = (props) => {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <i class='material-icons'>dashboard</i>
+            <i className='material-icons'>dashboard</i>
           </ListItemIcon>
           <ListItemText>
             <a href='/dashboard'>Dashboard</a>
@@ -92,7 +94,7 @@ const ResponsiveDrawer = (props) => {
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <i class='material-icons'>add</i>
+            <i className='material-icons'>add</i>
           </ListItemIcon>
           <ListItemText>
             <a href='/createfund'>Create Fund</a>
@@ -101,7 +103,7 @@ const ResponsiveDrawer = (props) => {
 
         <ListItem onClick={onClick} button>
           <ListItemIcon>
-            <i class='material-icons'>meeting_room</i>
+            <i className='material-icons'>meeting_room</i>
           </ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </ListItem>
@@ -159,7 +161,7 @@ const ResponsiveDrawer = (props) => {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <InputFund />
+        <InputFund fundContext={fundContext} />
       </main>
     </div>
   );

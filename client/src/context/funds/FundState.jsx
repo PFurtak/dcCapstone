@@ -35,19 +35,21 @@ const FundState = (props) => {
   };
 
   // Add fund
-  const addFund = async (fund) => {
+  const addFund = async (funds) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
+    console.log('please work');
 
     try {
-      const res = await axios.post('/api/funds', fund, config);
-
+      const res = await axios.post('/api/funds', funds, config);
+      console.log('please work try');
       dispatch({ type: ADD_FUND, payload: res.data });
     } catch (err) {
       dispatch({ type: FUND_ERROR, payload: err.response.msg });
+      console.log('error');
     }
   };
 
