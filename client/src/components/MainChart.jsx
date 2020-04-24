@@ -47,21 +47,15 @@ const MainChart = () => {
       const res = await axios.get(
         "https://cloud.iexapis.com/stable/stock/spy/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9"
       );
-      const minutes = [];
-      const prices = [];
-      JSON.stringify(res.data, (key, value) => {
-        if (key === "label") minutes.push(value);
-        return value;
-      });
-      JSON.stringify(res.data, (key, value) => {
-        if ((value !== null)&&(key === "average")) prices.push(value);
-        return value;
-      });
-      let spchartData = {};
-      let i;
-      for (i = 0; i < minutes.length; i++) {
-        spchartData[minutes[i]] = prices[i];
-      }
+
+    let spchartData = res.data;
+     spchartData = spchartData.reduce(function(r, e) {
+        if(e.average !== null){
+            r[e.label] = e.average; 
+        }
+        return r
+    }, {})
+
       await setspChartData({
         spchartData: spchartData,
       });
@@ -74,21 +68,13 @@ const MainChart = () => {
       const res = await axios.get(
         "https://cloud.iexapis.com/stable/stock/qqq/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9"
       );
-      const minutes = [];
-      const prices = [];
-      JSON.stringify(res.data, (key, value) => {
-        if (key === "label") minutes.push(value);
-        return value;
-      });
-      JSON.stringify(res.data, (key, value) => {
-        if ((value !== null)&&(key === "average"))prices.push(value);
-        return value;
-      });
-      let naschartData = {};
-      let i;
-      for (i = 0; i < minutes.length; i++) {
-        naschartData[minutes[i]] = prices[i];
-      }
+      let naschartData = res.data;
+      naschartData = naschartData.reduce(function(r, e) {
+         if(e.average !== null){
+             r[e.label] = e.average; 
+         }
+         return r
+     }, {})
       await setnasChartData({
         naschartData: naschartData,
       });
@@ -107,15 +93,13 @@ const MainChart = () => {
         if (key === "label") minutes.push(value);
         return value;
       });
-      JSON.stringify(res.data, (key, value) => {
-        if ((value !== null)&&(key === "marketAverage"))prices.push(value);
-        return value;
-      });
-      let diachartData = {};
-      let i;
-      for (i = 0; i < minutes.length; i++) {
-        diachartData[minutes[i]] = prices[i];
-      }
+      let diachartData = res.data;
+      diachartData = diachartData.reduce(function(r, e) {
+         if(e.average !== null){
+             r[e.label] = e.average; 
+         }
+         return r
+     }, {})
       await setdiaChartData({
         diachartData: diachartData,
       });
@@ -181,7 +165,7 @@ const MainChart = () => {
         <h1 className="title">NASDAQ</h1>
         <AreaChart
           data={naschartData.naschartData}
-          min={210}
+          min={208}
           points={false}
           xtitle="Time of day"
           ytitle="Average Price"
