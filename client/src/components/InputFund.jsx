@@ -54,26 +54,23 @@ const InputFund = () => {
     await setFundInput({
       searchArray: res.data,
     });
+    await console.log(res.data);
   };
 
   const autoComplete = async (event) => {
-    try {
-      await setFundInput({
-        input: event.target.value,
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    await setFundInput({
+      ...fundInput,
+      input: event.target.value,
+    });
+
     searchInput();
   };
 
   const setInput = async (param) => {
-    try {
-      await setFundInput({
-        input: param.symbol,
-        pickedSecurity: param,
-      });
-    } catch {}
+    await setFundInput({
+      input: param.symbol,
+      pickedSecurity: param,
+    });
   };
 
   const amountToInvestInput = (event) => {
@@ -120,8 +117,8 @@ const InputFund = () => {
       />
       <Autocomplete
         id='stockInput'
-        onChange={setInput}
-        onSelect={getQuote}
+        onInputChange={autoComplete}
+        // onSelect={getQuote}
         options={searchArray}
         getOptionLabel={(stock) => stock.symbol + ' ' + stock.securityName}
         renderInput={(params) => (
