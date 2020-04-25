@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MaterialTable from 'material-table';
 import TableFooter from '@material-ui/core/TableFooter';
+import { param } from 'express-validator';
 
 const InputFund = () => {
   const [fundInput, setFundInput] = useState({
@@ -68,12 +69,26 @@ const InputFund = () => {
     });
   };
 
-  const setInput = async (param) => {
+  const handleChange = async (param) => {
     await setFundInput({
+      ...fundInput,
       input: param.symbol,
       pickedSecurity: param,
     });
   };
+
+  // const setInput = async (param) => {
+  //   try {
+  //     await setFundInput({
+  //       ...fundInput,
+  //       input: param.symbol,
+  //       pickedSecurity: param,
+  //     });
+  //     console.log('param :', param);
+  //   } catch (error) {
+  //     console.log('error is', error);
+  //   }
+  // };
 
   const amountToInvestInput = (event) => {
     setFundInput({
@@ -119,7 +134,7 @@ const InputFund = () => {
       />
       <Autocomplete
         id='stockInput'
-        onChange={setInput}
+        onChange={handleChange}
         onInputChange={autoComplete}
         // onSelect={getQuote}
         options={searchArray}
