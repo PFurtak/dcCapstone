@@ -8,6 +8,9 @@ import MaterialTable from 'material-table';
 import TableFooter from '@material-ui/core/TableFooter';
 
 const InputFund = () => {
+  const fundContext = useContext(FundContext);
+  const { addFund, getFunds } = fundContext;
+
   const [input, setInput] = useState('');
   const [searchArray, setSearchArray] = useState([]);
   const [quote, setQuote] = useState(0);
@@ -17,6 +20,18 @@ const InputFund = () => {
   const [shareAmount, setShareAmount] = useState(0);
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
+
+  const [funds, setFunds] = useState({
+    fundName: '',
+    security: '',
+    ticker: '',
+    amount: 0,
+    priceWhenAdded: 0,
+  });
+
+  const postToDB = (e) => {
+    addFund(funds);
+  };
 
   const columns = [
     { title: 'Security', field: 'security' },
@@ -90,6 +105,8 @@ const InputFund = () => {
       dateWhenAdded: new Date(),
     };
     setData([...data, newData]);
+    setFunds([...data, newData]);
+    return funds;
   };
 
   return (
@@ -98,7 +115,10 @@ const InputFund = () => {
         id='fundName'
         label='Name your Fund'
         variant='outlined'
-        onChange={(e) => setFundName(e.target.value)}
+        onChange={(e) =>
+          setFundName(e.target.value) &&
+          setFunds({ ...funds, fundName: e.target.value })
+        }
       />
       <Autocomplete
         id='stockInput'
@@ -168,7 +188,7 @@ const InputFund = () => {
             }),
         }}
       />
-      <Button variant='contained' color='primary'>
+      <Button onClick={postToDB} variant='contained' color='primary'>
         Save Fund
       </Button>
     </div>
