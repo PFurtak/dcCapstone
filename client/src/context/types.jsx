@@ -7,3 +7,17 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+// Funds
+export const GET_FUNDS = 'GET_FUNDS';
+export const CLEAR_FUNDS = 'CLEAR_FUNDS';
+export const ADD_FUND = 'ADD_FUND';
+export const DELETE_FUND = 'DELETE_FUND';
+export const SET_CURRENT = 'SET_CURRENT';
+export const CLEAR_CURRENT = 'CLEAR_CURRENT';
+export const UPDATE_FUND = 'UPDATE_FUND';
+export const FUND_ERROR = 'FUND_ERROR';
+export const FILTER_FUNDS = 'FILTER_FUNDS';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';

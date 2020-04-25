@@ -20,29 +20,28 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import InputFund from "./InputFund";
 import MainChart from './MainChart';
 
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     },
   },
   // necessary for content to be below app bar
@@ -58,6 +57,12 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
+  const { logout } = authContext;
+
+  const onClick = (e) => {
+    logout();
+    props.history.push('/login');
+  };
 
   useEffect(() => {
     authContext.loadUser();
@@ -74,31 +79,30 @@ const ResponsiveDrawer = (props) => {
   };
 
   const drawer = (
-    <div className="drawer">
+    <div className='drawer'>
       <div className={classes.toolbar} />
       <Divider />
       <List>
         <ListItem button>
           <ListItemIcon>
-            <i class="material-icons">dashboard</i>
+            <i class='material-icons'>dashboard</i>
           </ListItemIcon>
           <ListItemText>
-            <a href="/dashboard">Dashboard</a>
+            <a href='/dashboard'>Dashboard</a>
           </ListItemText>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <i class="material-icons">add</i>
+            <i class='material-icons'>add</i>
           </ListItemIcon>
           <ListItemText>
-            <a href="/createfund">Create Fund</a>
+            <a href='/createfund'>Create Fund</a>
           </ListItemText>
         </ListItem>
 
-        {/* Patrick this button */}
-        <ListItem button>
+        <ListItem onClick={onClick} button>
           <ListItemIcon>
-            <i class="material-icons">meeting_room</i>
+            <i class='material-icons'>meeting_room</i>
           </ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </ListItem>
@@ -110,29 +114,28 @@ const ResponsiveDrawer = (props) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} id="dashBar">
+      <AppBar position='fixed' className={classes.appBar} id='dashBar'>
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
+            color='inherit'
+            aria-label='open drawer'
+            edge='start'
             onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
+            className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant='h6' noWrap>
             Welcome, "Name"
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label='mailbox folders'>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden smUp implementation='css'>
           <Drawer
             container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
+            variant='temporary'
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
@@ -140,19 +143,17 @@ const ResponsiveDrawer = (props) => {
             }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
-            }}
-          >
+            }}>
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden xsDown implementation='css'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,
             }}
-            variant="permanent"
-            open
-          >
+            variant='permanent'
+            open>
             {drawer}
           </Drawer>
         </Hidden>
