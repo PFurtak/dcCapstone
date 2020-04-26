@@ -8,6 +8,9 @@ import MaterialTable from 'material-table';
 import TableFooter from '@material-ui/core/TableFooter';
 
 const InputFund = () => {
+  const fundContext = useContext(FundContext);
+  const { addFund, getFunds } = fundContext;
+
   const [input, setInput] = useState('');
   const [searchArray, setSearchArray] = useState([]);
   const [quote, setQuote] = useState(0);
@@ -17,6 +20,18 @@ const InputFund = () => {
   const [shareAmount, setShareAmount] = useState(0);
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
+
+  const [funds, setFunds] = useState({
+    fundname: '',
+    security: '',
+    ticker: '',
+    amount: 0,
+    priceWhenAdded: 0,
+  });
+
+  const postToDB = (e) => {
+    addFund(funds);
+  };
 
   const columns = [
     { title: 'Security', field: 'security' },
@@ -36,20 +51,29 @@ const InputFund = () => {
       setPickedSymbol(newValue.symbol);
       setPickedSecurity(newValue.securityName);
     } catch {}
-    const response = await axios.get(
+    await fetch(
       `https://cloud.iexapis.com/stable/stock/${input}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
-    );
-    const data = response.data;
-    setQuote(response.data);
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setQuote(data);
+      });
+    //const data = response.data;
+    //setQuote(response.data);
   };
 
   useEffect(
     function effectFunction() {
-      async function getSearch() {
-        const response = await axios.get(
+      function getSearch() {
+        fetch(
           `https://cloud.iexapis.com/stable/search/${input}?token=pk_135e66691d174c4291a33989af3f52c9`
-        );
-        const data = await response.data;
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setSearchArray(data);
+          })
+          .catch((err) => console.log(err));
+
         setSearchArray(data);
       }
       getSearch();
@@ -83,6 +107,7 @@ const InputFund = () => {
 
   const fundAdd = () => {
     const newData = {
+      fundname: fundName,
       security: pickedSecurity,
       ticker: pickedSymbol,
       amount: amountToInvest,
@@ -90,6 +115,9 @@ const InputFund = () => {
       dateWhenAdded: new Date(),
     };
     setData([...data, newData]);
+    setFunds([...data, newData]);
+
+    return funds;
   };
 
   return (
@@ -98,6 +126,7 @@ const InputFund = () => {
         id='fundName'
         label='Name your Fund'
         variant='outlined'
+        name={fundName}
         onChange={(e) => setFundName(e.target.value)}
       />
       <Autocomplete
@@ -168,7 +197,7 @@ const InputFund = () => {
             }),
         }}
       />
-      <Button variant='contained' color='primary'>
+      <Button onClick={postToDB} variant='contained' color='primary'>
         Save Fund
       </Button>
     </div>

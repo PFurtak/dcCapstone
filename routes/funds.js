@@ -31,22 +31,14 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const {
-      fundname,
-      amount,
-      lastprice,
-      purchaseprice,
-      security,
-      ticker,
-    } = req.body;
+    const { fundName, security, ticker, amount, priceWhenAdded } = req.body;
     try {
       const newFund = new Fund({
-        fundname,
-        amount,
-        lastprice,
-        purchaseprice,
+        fundName,
         security,
         ticker,
+        amount,
+        priceWhenAdded,
         user: req.user.id,
       });
       const fund = await newFund.save();
@@ -62,22 +54,14 @@ router.post(
 // update fund
 // Private access
 router.put('/:id', auth, async (req, res) => {
-  const {
-    fundname,
-    amount,
-    lastprice,
-    purchaseprice,
-    security,
-    ticker,
-  } = req.body;
+  const { fundName, security, ticker, amount, priceWhenAdded } = req.body;
 
   const fundFields = {};
-  if (fundname) fundFields.fundname = fundname;
-  if (amount) fundFields.amount = amount;
-  if (lastprice) fundFields.lastprice = lastprice;
-  if (purchaseprice) fundFields.purchaseprice = purchaseprice;
+  if (fundName) fundFields.fundName = fundName;
   if (security) fundFields.security = security;
   if (ticker) fundFields.ticker = ticker;
+  if (amount) fundFields.amount = amount;
+  if (priceWhenAdded) fundFields.priceWhenAdded = priceWhenAdded;
 
   try {
     let fund = await Fund.findById(req.params.id);
