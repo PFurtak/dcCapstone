@@ -23,13 +23,29 @@ const InputFund = () => {
 
   const [fund, setFunds] = useState({
     fundname: 'Hardcode test',
-    security: 'test',
-    ticker: 'tst',
-    amount: 0,
-    priceWhenAdded: 0,
+    funds: [{
+      fundname: "test",
+      security: "testing",
+      ticker: "tese",
+      amount: 3000,
+      priceWhenAdded: 49,
+      dateWhenAdded: new Date(),
+    }
+    ]
   });
 
-  const postToDB = (e) => {
+  // const postToDB = async (e) => {
+  //   let finalFundData = data
+  //   for (var i = 0; i < finalFundData.length; i++) {
+  //     delete finalFundData[i].tableData;
+  //     delete finalFundData[i].dateWhenAdded;
+  //   }
+  //   let finalFinalFundData =  {fundname: fundName, funds: data }
+  //   await console.log(finalFinalFundData)
+  //   await addFund(finalFinalFundData);
+  // };
+
+   const postToDB = (e) => {
     addFund(fund.newData);
   };
 
