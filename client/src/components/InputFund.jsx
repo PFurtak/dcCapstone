@@ -60,11 +60,16 @@ const InputFund = () => {
 
   useEffect(
     function effectFunction() {
-      async function getSearch() {
-        const response = await axios.get(
+      function getSearch() {
+        fetch(
           `https://cloud.iexapis.com/stable/search/${input}?token=pk_135e66691d174c4291a33989af3f52c9`
-        );
-        const data = await response.data;
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setSearchArray(data);
+          })
+          .catch((err) => console.log(err));
+
         setSearchArray(data);
       }
       getSearch();
