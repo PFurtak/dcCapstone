@@ -30,7 +30,7 @@ const FundState = (props) => {
       const res = await axios.get('/api/funds');
       dispatch({ type: GET_FUNDS, payload: res.data });
     } catch (err) {
-      dispatch({ type: FUND_ERROR, payload: err.response.msg });
+      console.log(err);
     }
   };
 
@@ -41,13 +41,11 @@ const FundState = (props) => {
         'Content-Type': 'application/json',
       },
     };
-
     try {
       const res = await axios.post('/api/funds', fund, config);
-
       dispatch({ type: ADD_FUND, payload: res.data });
     } catch (err) {
-      dispatch({ type: FUND_ERROR, payload: err.response.msg });
+      console.log(err);
     }
   };
 

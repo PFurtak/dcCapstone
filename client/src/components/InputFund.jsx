@@ -21,16 +21,16 @@ const InputFund = () => {
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
 
-  const [funds, setFunds] = useState({
-    fundname: '',
-    security: '',
-    ticker: '',
+  const [fund, setFunds] = useState({
+    fundname: 'Hardcode test',
+    security: 'test',
+    ticker: 'tst',
     amount: 0,
     priceWhenAdded: 0,
   });
 
   const postToDB = (e) => {
-    addFund(funds);
+    addFund(fund.newData);
   };
 
   const columns = [
@@ -113,9 +113,9 @@ const InputFund = () => {
       dateWhenAdded: new Date(),
     };
     setData([...data, newData]);
-    setFunds([...data, newData]);
+    setFunds({ ...data, newData });
 
-    return funds;
+    return fund;
   };
 
   return (
