@@ -9,22 +9,15 @@ const FundSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  security: {
-    type: String,
-  },
-  ticker: {
-    type: String,
-  },
-  amount: {
-    type: Number,
-  },
-  priceWhenAdded: {
-    type: Number,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  
+  stocks: [{
+    security: String, 
+    ticker: String, 
+    amount: Number, 
+    priceWhenAdded: Number, 
+    dateWhenAdded: Date
+
+  }]
 });
 
 module.exports = mongoose.model('fund', FundSchema);

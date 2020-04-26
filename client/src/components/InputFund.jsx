@@ -34,20 +34,20 @@ const InputFund = () => {
     ]
   });
 
-  // const postToDB = async (e) => {
-  //   let finalFundData = data
-  //   for (var i = 0; i < finalFundData.length; i++) {
-  //     delete finalFundData[i].tableData;
-  //     delete finalFundData[i].dateWhenAdded;
-  //   }
-  //   let finalFinalFundData =  {fundname: fundName, funds: data }
-  //   await console.log(finalFinalFundData)
-  //   await addFund(finalFinalFundData);
-  // };
-
-   const postToDB = (e) => {
-    addFund(fund.newData);
+  const postToDB = async (e) => {
+    let finalFundData = data
+    for (var i = 0; i < finalFundData.length; i++) {
+      delete finalFundData[i].tableData;
+      // delete finalFundData[i].dateWhenAdded;
+    }
+    let finalFinalFundData =  {fundname: fundName, stocks: data }
+    await console.log(finalFinalFundData)
+    await addFund(finalFinalFundData);
   };
+
+  //  const postToDB = (e) => {
+  //   addFund(fund.newData);
+  // };    
 
   const columns = [
     { title: 'Security', field: 'security' },
@@ -121,7 +121,6 @@ const InputFund = () => {
 
   const fundAdd = () => {
     const newData = {
-      fundname: fundName,
       security: pickedSecurity,
       ticker: pickedSymbol,
       amount: amountToInvest,
