@@ -58,8 +58,6 @@ const InputFund = () => {
       .then((data) => {
         setQuote(data);
       });
-    //const data = response.data;
-    //setQuote(response.data);
   };
 
   useEffect(

@@ -31,10 +31,10 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { fundName, security, ticker, amount, priceWhenAdded } = req.body;
+    const { fundname, security, ticker, amount, priceWhenAdded } = req.body;
     try {
       const newFund = new Fund({
-        fundName,
+        fundname,
         security,
         ticker,
         amount,
@@ -54,10 +54,10 @@ router.post(
 // update fund
 // Private access
 router.put('/:id', auth, async (req, res) => {
-  const { fundName, security, ticker, amount, priceWhenAdded } = req.body;
+  const { fundname, security, ticker, amount, priceWhenAdded } = req.body;
 
   const fundFields = {};
-  if (fundName) fundFields.fundName = fundName;
+  if (fundname) fundFields.fundname = fundname;
   if (security) fundFields.security = security;
   if (ticker) fundFields.ticker = ticker;
   if (amount) fundFields.amount = amount;
