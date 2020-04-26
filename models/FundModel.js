@@ -9,20 +9,17 @@ const FundSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  amount: {
-    type: Number,
-  },
-  lastprice: {
-    type: Number,
-  },
-  purchaseprice: {
-    type: Number,
-  },
   security: {
     type: String,
   },
   ticker: {
     type: String,
+  },
+  amount: {
+    type: Number,
+  },
+  priceWhenAdded: {
+    type: Number,
   },
   date: {
     type: Date,
