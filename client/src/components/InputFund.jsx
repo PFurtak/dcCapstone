@@ -22,7 +22,7 @@ const InputFund = () => {
   const [fundName, setFundName] = useState('');
 
   const [funds, setFunds] = useState({
-    fundName: '',
+    fundname: '',
     security: '',
     ticker: '',
     amount: 0,
@@ -103,6 +103,7 @@ const InputFund = () => {
 
   const fundAdd = () => {
     const newData = {
+      fundname: fundName,
       security: pickedSecurity,
       ticker: pickedSymbol,
       amount: amountToInvest,
@@ -111,6 +112,7 @@ const InputFund = () => {
     };
     setData([...data, newData]);
     setFunds([...data, newData]);
+
     return funds;
   };
 
@@ -120,10 +122,8 @@ const InputFund = () => {
         id='fundName'
         label='Name your Fund'
         variant='outlined'
-        onChange={(e) =>
-          setFundName(e.target.value) &&
-          setFunds({ ...funds, fundName: e.target.value })
-        }
+        name={fundName}
+        onChange={(e) => setFundName(e.target.value)}
       />
       <Autocomplete
         id='stockInput'
