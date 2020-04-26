@@ -51,11 +51,15 @@ const InputFund = () => {
       setPickedSymbol(newValue.symbol);
       setPickedSecurity(newValue.securityName);
     } catch {}
-    const response = await axios.get(
+    await fetch(
       `https://cloud.iexapis.com/stable/stock/${input}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
-    );
-    const data = response.data;
-    setQuote(response.data);
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setQuote(data);
+      });
+    //const data = response.data;
+    //setQuote(response.data);
   };
 
   useEffect(
