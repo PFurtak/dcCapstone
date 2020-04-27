@@ -164,7 +164,7 @@ const ResponsiveDrawer = (props) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <InputFund />
-        {/* <MainChart/> */}
+        <MainChart/>
       </main>
     </div>
   );

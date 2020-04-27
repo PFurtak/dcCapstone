@@ -36,6 +36,10 @@ const MainChart = () => {
   const [spchartData, setspChartData] = useState([]);
   const [ naschartData, setnasChartData] = useState([]);
   const [ diachartData, setdiaChartData] = useState([]);
+  const [spchartMin, setspchartMin] = useState(0); 
+  const [diachartMin, setdiachartMin] = useState(0); 
+  const [naschartMin, setnaschartMin] = useState(0); 
+
 
   const [value, setValue] = React.useState(2);
 
@@ -55,13 +59,15 @@ const MainChart = () => {
         }
         return r
     }, {})
-
-      await setspChartData({
-        spchartData: spchartData,
-      });
+    let minArray = Object.values(spchartData); 
+    let min = Math.min(...minArray) - 3; 
+    await setspchartMin(min)
+      await setspChartData(
+        spchartData
+      );
     } catch {}
   }, []);
-  console.log(spchartData.spchartData);
+  console.log(spchartData);
 
   useEffect(async () => {
     try {
@@ -75,12 +81,15 @@ const MainChart = () => {
          }
          return r
      }, {})
-      await setnasChartData({
-        naschartData: naschartData,
-      });
+     let minArray = Object.values(naschartData); 
+     let min = Math.min(...minArray) - 3; 
+     await setnaschartMin(min)
+      await setnasChartData(
+        naschartData
+      );
     } catch {}
   }, []);
-  console.log(naschartData.naschartData);
+  console.log(naschartData);
 
   useEffect(async () => {
     try {
@@ -89,10 +98,6 @@ const MainChart = () => {
       );
       const minutes = [];
       const prices = [];
-      JSON.stringify(res.data, (key, value) => {
-        if (key === "label") minutes.push(value);
-        return value;
-      });
       let diachartData = res.data;
       diachartData = diachartData.reduce(function(r, e) {
          if(e.average !== null){
@@ -100,12 +105,15 @@ const MainChart = () => {
          }
          return r
      }, {})
-      await setdiaChartData({
-        diachartData: diachartData,
-      });
+     let minArray = Object.values(diachartData); 
+     let min = Math.min(...minArray) - 3; 
+     await setdiachartMin(min)
+      await setdiaChartData(
+        diachartData
+      );
     } catch {}
   }, []);
-  console.log(diachartData.diachartData);
+  console.log(diachartData);
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -148,8 +156,8 @@ const MainChart = () => {
       <CardContent>
         <h1 className="title">S&P 500</h1>
         <AreaChart
-          data={spchartData.spchartData}
-          min={278}
+          data={spchartData}
+          min={spchartMin}
           points={false}
           xtitle="Time of day"
           ytitle="Average Price"
@@ -164,8 +172,8 @@ const MainChart = () => {
       <CardContent>
         <h1 className="title">NASDAQ</h1>
         <AreaChart
-          data={naschartData.naschartData}
-          min={208}
+          data={naschartData}
+          min={naschartMin}
           points={false}
           xtitle="Time of day"
           ytitle="Average Price"
@@ -180,8 +188,8 @@ const MainChart = () => {
       <CardContent>
         <h1 className="title">DOW</h1>
         <AreaChart
-          data={diachartData.diachartData}
-          min={230}
+          data={diachartData}
+          min={diachartMin}
           points={false}
           xtitle="Time of day"
           ytitle="Average Price"
