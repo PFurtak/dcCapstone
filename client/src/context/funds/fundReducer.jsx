@@ -23,7 +23,7 @@ export default (state, action) => {
     case ADD_FUND:
       return {
         ...state,
-        funds: [action.payload, ...state.funds],
+        funds: [ ...state.funds, action.payload],
         loading: false,
       };
     case DELETE_FUND:

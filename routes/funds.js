@@ -31,14 +31,11 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { fundname, security, ticker, amount, priceWhenAdded } = req.body;
+    const { fundname, stocks } = req.body;
     try {
       const newFund = new Fund({
         fundname,
-        security,
-        ticker,
-        amount,
-        priceWhenAdded,
+        stocks,
         user: req.user.id,
       });
       const fund = await newFund.save();

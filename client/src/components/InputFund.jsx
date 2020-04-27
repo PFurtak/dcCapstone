@@ -20,18 +20,37 @@ const InputFund = () => {
   const [shareAmount, setShareAmount] = useState(0);
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
+  const [showTable, setShowTable] = useState(true)
 
   const [fund, setFunds] = useState({
     fundname: 'Hardcode test',
-    security: 'test',
-    ticker: 'tst',
-    amount: 0,
-    priceWhenAdded: 0,
+    funds: [{
+      fundname: "test",
+      security: "testing",
+      ticker: "tese",
+      amount: 3000,
+      priceWhenAdded: 49,
+      dateWhenAdded: new Date(),
+    }
+    ]
   });
 
-  const postToDB = (e) => {
-    addFund(fund.newData);
+  const postToDB =  (e) => {
+    setShowTable(false); 
+    let finalFundData = data
+    for (var i = 0; i < finalFundData.length; i++) {
+      delete finalFundData[i].tableData;
+      // delete finalFundData[i].dateWhenAdded;
+    }
+    let finalFinalFundData =  {fundname: fundName, stocks: data }
+     console.log(finalFinalFundData)
+     addFund(finalFinalFundData);
+    // await setData(data)
   };
+
+  //  const postToDB = (e) => {
+  //   addFund(fund.newData);
+  // };    
 
   const columns = [
     { title: 'Security', field: 'security' },
@@ -59,6 +78,12 @@ const InputFund = () => {
         setQuote(data);
       });
   };
+
+  const reloadTable = (event) =>{
+    setShowTable(true);
+    setData([]);
+    setFundName("");
+  }
 
   useEffect(
     function effectFunction() {
@@ -105,7 +130,6 @@ const InputFund = () => {
 
   const fundAdd = () => {
     const newData = {
-      fundname: fundName,
       security: pickedSecurity,
       ticker: pickedSymbol,
       amount: amountToInvest,
@@ -115,7 +139,7 @@ const InputFund = () => {
     setData([...data, newData]);
     setFunds({ ...data, newData });
 
-    return fund;
+    // return fund;
   };
 
   return (
@@ -176,7 +200,12 @@ const InputFund = () => {
       <Button onClick={fundAdd} variant='contained' color='primary'>
         Add Security
       </Button>
-      <MaterialTable
+
+      {/* {this.state.showGraph ?
+           <LookupChart {...this.state} /> :
+           null
+        } */}
+      {showTable ? <><MaterialTable
         title={fundName}
         columns={columns}
         data={data}
@@ -194,10 +223,17 @@ const InputFund = () => {
               }, 600);
             }),
         }}
-      />
-      <Button onClick={postToDB} variant='contained' color='primary'>
-        Save Fund
+      />   <Button onClick={postToDB} variant='contained' color='primary'>
+      Save Fund
+    </Button> </>: 
+        <> 
+      <h1> Fund Saved </h1>
+      <Button onClick={reloadTable} variant='contained' color='primary'>
+        Create Fund
       </Button>
+        </>
+      }
+    
     </div>
   );
 };
