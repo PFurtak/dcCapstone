@@ -34,15 +34,16 @@ const InputFund = () => {
     ]
   });
 
-  const postToDB = async (e) => {
+  const postToDB =  (e) => {
     let finalFundData = data
     for (var i = 0; i < finalFundData.length; i++) {
       delete finalFundData[i].tableData;
       // delete finalFundData[i].dateWhenAdded;
     }
     let finalFinalFundData =  {fundname: fundName, stocks: data }
-    await console.log(finalFinalFundData)
-    await addFund(finalFinalFundData);
+     console.log(finalFinalFundData)
+     addFund(finalFinalFundData);
+    // await setData(data)
   };
 
   //  const postToDB = (e) => {
@@ -130,7 +131,7 @@ const InputFund = () => {
     setData([...data, newData]);
     setFunds({ ...data, newData });
 
-    return fund;
+    // return fund;
   };
 
   return (
@@ -195,20 +196,20 @@ const InputFund = () => {
         title={fundName}
         columns={columns}
         data={data}
-        editable={{
-          onRowDelete: (oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                setData((prevState) => {
-                  console.log(prevState);
-                  const thedata = [...prevState];
-                  thedata.splice(thedata.indexOf(oldData), 1);
-                  return thedata;
-                });
-              }, 600);
-            }),
-        }}
+        // editable={{
+        //   onRowDelete: (oldData) =>
+        //     new Promise((resolve) => {
+        //       setTimeout(() => {
+        //         resolve();
+        //         setData((prevState) => {
+        //           console.log(prevState);
+        //           const thedata = [...prevState];
+        //           thedata.splice(thedata.indexOf(oldData), 1);
+        //           return thedata;
+        //         });
+        //       }, 600);
+        //     }),
+        // }}
       />
       <Button onClick={postToDB} variant='contained' color='primary'>
         Save Fund
