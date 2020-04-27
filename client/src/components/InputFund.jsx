@@ -64,20 +64,29 @@ const InputFund = () => {
     setInput(event.target.value);
   };
 
-  const getQuote = async (event, newValue) => {
-    try {
-      setInput(newValue.symbol);
+  const setProperInput = (event, newValue) =>{
+    try {setInput(newValue.symbol);
       setPickedSymbol(newValue.symbol);
       setPickedSecurity(newValue.securityName);
     } catch {}
-    await fetch(
-      `https://cloud.iexapis.com/stable/stock/${input}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setQuote(data);
-      });
-  };
+  }
+
+  useEffect(
+    function effectFunction() {
+      async function getQuotes() {
+        
+        fetch(
+          `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setQuote(data)
+          })
+      }
+      getQuotes();
+    },
+    [pickedSymbol]
+  );
 
   const reloadTable = (event) =>{
     setShowTable(true);
@@ -102,20 +111,6 @@ const InputFund = () => {
       getSearch();
     },
     [input]
-  );
-
-  useEffect(
-    function effectFunction() {
-      async function getQuotes() {
-        const response = await axios.get(
-          `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
-        );
-        const data = await response.data;
-        setQuote(data);
-      }
-      getQuotes();
-    },
-    [pickedSymbol]
   );
 
   useEffect(
@@ -154,7 +149,7 @@ const InputFund = () => {
       <Autocomplete
         id='stockInput'
         onInputChange={handleInput}
-        onChange={getQuote}
+        onChange={setProperInput}
         options={searchArray}
         getOptionLabel={(stock) => stock.symbol + ' ' + stock.securityName}
         renderInput={(params) => (
