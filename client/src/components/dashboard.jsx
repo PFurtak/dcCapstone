@@ -15,6 +15,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AuthContext from '../context/auth/authContext';
+import FundContext from '../context/funds/fundContext';
 
 const drawerWidth = 240;
 
@@ -53,11 +54,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
+  const fundContext = useContext(FundContext);
 
-  const { logout } = authContext;
+  const { getFunds } = fundContext;
+  const { logout, loadUser } = authContext;
 
   useEffect(() => {
-    authContext.loadUser();
+    loadUser();
+    getFunds();
 
     //eslint-disable-next-line
   }, []);
