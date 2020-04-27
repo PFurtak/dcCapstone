@@ -17,7 +17,7 @@ import {
 
 const FundState = (props) => {
   const initialState = {
-    funds: null,
+    funds: [],
     current: null,
     filtered: null,
     error: null,
