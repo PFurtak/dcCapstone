@@ -1,23 +1,23 @@
-import React, { useContext, useEffect } from "react";
-import AuthContext from "../context/auth/authContext";
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
-import MenuIcon from "@material-ui/icons/Menu";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import InputFund from "./InputFund";
+import React, { useContext, useEffect } from 'react';
+import AuthContext from '../context/auth/authContext';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import InputFund from './InputFund';
 import MainChart from './MainChart';
 
 const drawerWidth = 240;
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
-  const { logout } = authContext;
+  const { logout, user } = authContext;
 
   const onClick = (e) => {
     logout();
@@ -125,7 +125,10 @@ const ResponsiveDrawer = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            Welcome, "Name"
+            Hi,{' '}
+            {user &&
+              user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1)}
+            ! Let's start planning for you future.
           </Typography>
         </Toolbar>
       </AppBar>

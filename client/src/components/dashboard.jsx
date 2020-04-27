@@ -57,7 +57,7 @@ const ResponsiveDrawer = (props) => {
   const fundContext = useContext(FundContext);
 
   const { getFunds } = fundContext;
-  const { logout, loadUser } = authContext;
+  const { logout, loadUser, user } = authContext;
 
   useEffect(() => {
     loadUser();
@@ -127,7 +127,10 @@ const ResponsiveDrawer = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            Welcome, "Name"
+            Hi,{' '}
+            {user &&
+              user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1)}
+            ! Let's review your investments.
           </Typography>
         </Toolbar>
       </AppBar>
