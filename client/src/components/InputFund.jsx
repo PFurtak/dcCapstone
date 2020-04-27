@@ -20,6 +20,7 @@ const InputFund = () => {
   const [shareAmount, setShareAmount] = useState(0);
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
+  const [showTable, setShowTable] = useState(true)
 
   const [fund, setFunds] = useState({
     fundname: 'Hardcode test',
@@ -35,6 +36,7 @@ const InputFund = () => {
   });
 
   const postToDB =  (e) => {
+    setShowTable(false); 
     let finalFundData = data
     for (var i = 0; i < finalFundData.length; i++) {
       delete finalFundData[i].tableData;
@@ -192,7 +194,12 @@ const InputFund = () => {
       <Button onClick={fundAdd} variant='contained' color='primary'>
         Add Security
       </Button>
-      <MaterialTable
+
+      {/* {this.state.showGraph ?
+           <LookupChart {...this.state} /> :
+           null
+        } */}
+      {showTable ? <MaterialTable
         title={fundName}
         columns={columns}
         data={data}
@@ -210,7 +217,7 @@ const InputFund = () => {
         //       }, 600);
         //     }),
         // }}
-      />
+      /> : <h1> Fund Saved </h1>}
       <Button onClick={postToDB} variant='contained' color='primary'>
         Save Fund
       </Button>
