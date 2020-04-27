@@ -79,6 +79,12 @@ const InputFund = () => {
       });
   };
 
+  const reloadTable = (event) =>{
+    setShowTable(true);
+    setData([]);
+    setFundName("");
+  }
+
   useEffect(
     function effectFunction() {
       function getSearch() {
@@ -199,28 +205,35 @@ const InputFund = () => {
            <LookupChart {...this.state} /> :
            null
         } */}
-      {showTable ? <MaterialTable
+      {showTable ? <><MaterialTable
         title={fundName}
         columns={columns}
         data={data}
-        // editable={{
-        //   onRowDelete: (oldData) =>
-        //     new Promise((resolve) => {
-        //       setTimeout(() => {
-        //         resolve();
-        //         setData((prevState) => {
-        //           console.log(prevState);
-        //           const thedata = [...prevState];
-        //           thedata.splice(thedata.indexOf(oldData), 1);
-        //           return thedata;
-        //         });
-        //       }, 600);
-        //     }),
-        // }}
-      /> : <h1> Fund Saved </h1>}
-      <Button onClick={postToDB} variant='contained' color='primary'>
-        Save Fund
+        editable={{
+          onRowDelete: (oldData) =>
+            new Promise((resolve) => {
+              setTimeout(() => {
+                resolve();
+                setData((prevState) => {
+                  console.log(prevState);
+                  const thedata = [...prevState];
+                  thedata.splice(thedata.indexOf(oldData), 1);
+                  return thedata;
+                });
+              }, 600);
+            }),
+        }}
+      />   <Button onClick={postToDB} variant='contained' color='primary'>
+      Save Fund
+    </Button> </>: 
+        <> 
+      <h1> Fund Saved </h1>
+      <Button onClick={reloadTable} variant='contained' color='primary'>
+        Create Fund
       </Button>
+        </>
+      }
+    
     </div>
   );
 };
