@@ -20,37 +20,32 @@ const InputFund = () => {
   const [shareAmount, setShareAmount] = useState(0);
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
-  const [showTable, setShowTable] = useState(true)
+  const [showTable, setShowTable] = useState(true);
 
   const [fund, setFunds] = useState({
     fundname: 'Hardcode test',
-    funds: [{
-      fundname: "test",
-      security: "testing",
-      ticker: "tese",
-      amount: 3000,
-      priceWhenAdded: 49,
-      dateWhenAdded: new Date(),
-    }
-    ]
+    funds: [
+      {
+        fundname: '',
+        security: '',
+        ticker: '',
+        amount: 0,
+        priceWhenAdded: 0,
+        dateWhenAdded: new Date(),
+      },
+    ],
   });
 
-  const postToDB =  (e) => {
-    setShowTable(false); 
-    let finalFundData = data
+  const postToDB = (e) => {
+    setShowTable(false);
+    let finalFundData = data;
     for (var i = 0; i < finalFundData.length; i++) {
       delete finalFundData[i].tableData;
-      // delete finalFundData[i].dateWhenAdded;
     }
-    let finalFinalFundData =  {fundname: fundName, stocks: data }
-     console.log(finalFinalFundData)
-     addFund(finalFinalFundData);
-    // await setData(data)
+    let finalFinalFundData = { fundname: fundName, stocks: data };
+    console.log(finalFinalFundData);
+    addFund(finalFinalFundData);
   };
-
-  //  const postToDB = (e) => {
-  //   addFund(fund.newData);
-  // };    
 
   const columns = [
     { title: 'Security', field: 'security' },
@@ -64,35 +59,35 @@ const InputFund = () => {
     setInput(event.target.value);
   };
 
-  const setProperInput = (event, newValue) =>{
-    try {setInput(newValue.symbol);
+  const setProperInput = (event, newValue) => {
+    try {
+      setInput(newValue.symbol);
       setPickedSymbol(newValue.symbol);
       setPickedSecurity(newValue.securityName);
     } catch {}
-  }
+  };
 
   useEffect(
     function effectFunction() {
       async function getQuotes() {
-        
         fetch(
           `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
         )
           .then((res) => res.json())
           .then((data) => {
-            setQuote(data)
-          })
+            setQuote(data);
+          });
       }
       getQuotes();
     },
     [pickedSymbol]
   );
 
-  const reloadTable = (event) =>{
+  const reloadTable = (event) => {
     setShowTable(true);
     setData([]);
-    setFundName("");
-  }
+    setFundName('');
+  };
 
   useEffect(
     function effectFunction() {
@@ -133,8 +128,6 @@ const InputFund = () => {
     };
     setData([...data, newData]);
     setFunds({ ...data, newData });
-
-    // return fund;
   };
 
   return (
@@ -200,35 +193,39 @@ const InputFund = () => {
            <LookupChart {...this.state} /> :
            null
         } */}
-      {showTable ? <><MaterialTable
-        title={fundName}
-        columns={columns}
-        data={data}
-        editable={{
-          onRowDelete: (oldData) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                setData((prevState) => {
-                  console.log(prevState);
-                  const thedata = [...prevState];
-                  thedata.splice(thedata.indexOf(oldData), 1);
-                  return thedata;
-                });
-              }, 600);
-            }),
-        }}
-      />   <Button onClick={postToDB} variant='contained' color='primary'>
-      Save Fund
-    </Button> </>: 
-        <> 
-      <h1> Fund Saved </h1>
-      <Button onClick={reloadTable} variant='contained' color='primary'>
-        Create Fund
-      </Button>
+      {showTable ? (
+        <>
+          <MaterialTable
+            title={fundName}
+            columns={columns}
+            data={data}
+            editable={{
+              onRowDelete: (oldData) =>
+                new Promise((resolve) => {
+                  setTimeout(() => {
+                    resolve();
+                    setData((prevState) => {
+                      console.log(prevState);
+                      const thedata = [...prevState];
+                      thedata.splice(thedata.indexOf(oldData), 1);
+                      return thedata;
+                    });
+                  }, 600);
+                }),
+            }}
+          />{' '}
+          <Button onClick={postToDB} variant='contained' color='primary'>
+            Save Fund
+          </Button>{' '}
         </>
-      }
-    
+      ) : (
+        <>
+          <h1> Fund Saved </h1>
+          <Button onClick={reloadTable} variant='contained' color='primary'>
+            Create Fund
+          </Button>
+        </>
+      )}
     </div>
   );
 };
