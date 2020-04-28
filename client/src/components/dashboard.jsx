@@ -18,6 +18,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AuthContext from "../context/auth/authContext";
 import FundContext from "../context/funds/fundContext";
 import MainChart from "./MainChart";
+import SymbolChart from "./symbolChart";
 
 const drawerWidth = 240;
 
@@ -171,6 +172,7 @@ const ResponsiveDrawer = (props) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <MainChart />
+        <SymbolChart />
       </main>
     </div>
   );
