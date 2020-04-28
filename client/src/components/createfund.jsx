@@ -18,7 +18,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import InputFund from './InputFund';
-import MainChart from './MainChart';
 
 const drawerWidth = 240;
 
@@ -164,7 +163,6 @@ const ResponsiveDrawer = (props) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <InputFund />
-        <MainChart />
       </main>
     </div>
   );

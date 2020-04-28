@@ -96,8 +96,6 @@ const MainChart = () => {
       const res = await axios.get(
         "https://cloud.iexapis.com/stable/stock/dia/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9"
       );
-      const minutes = [];
-      const prices = [];
       let diachartData = res.data;
       diachartData = diachartData.reduce(function(r, e) {
          if(e.average !== null){
@@ -107,7 +105,7 @@ const MainChart = () => {
      }, {})
      let minArray = Object.values(diachartData); 
      let min = Math.min(...minArray) - 3; 
-     await setdiachartMin(min)
+      await setdiachartMin(min)
       await setdiaChartData(
         diachartData
       );

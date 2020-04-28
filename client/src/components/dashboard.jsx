@@ -17,6 +17,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AuthContext from '../context/auth/authContext';
 import FundContext from '../context/funds/fundContext';
+import MainChart from './MainChart';
+import DashBoardFundList from './DashboardFundList'; 
 
 const drawerWidth = 240;
 
@@ -166,6 +168,7 @@ const ResponsiveDrawer = (props) => {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        {/* <MainChart /> */}
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
@@ -195,6 +198,7 @@ const ResponsiveDrawer = (props) => {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
+        <DashBoardFundList />
       </main>
     </div>
   );
