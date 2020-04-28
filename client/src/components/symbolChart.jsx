@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { AreaChart, PieChart } from "react-chartkick";
-import "chart.js";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import FundContext from "../context/funds/fundContext";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import TextField from "@material-ui/core/TextField";
-
-const axios = require("axios");
+import React, { useState, useEffect, useContext } from 'react';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { AreaChart, PieChart } from 'react-chartkick';
+import 'chart.js';
+import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import FundContext from '../context/funds/fundContext';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles({
   root: {
@@ -23,9 +21,9 @@ const useStyles = makeStyles({
     marginTop: 20,
   },
   bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
   },
   title: {
     fontSize: 14,
@@ -44,13 +42,13 @@ const SymbolChart = () => {
   const [diachartMin, setdiachartMin] = useState(0);
   const [naschartMin, setnaschartMin] = useState(0);
   const fundContext = useContext(FundContext);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [searchArray, setSearchArray] = useState([]);
   const [quote, setQuote] = useState(0);
   const [pickedSecurity, setPickedSecurity] = useState({});
-  const [pickedSymbol, setPickedSymbol] = useState("");
+  const [pickedSymbol, setPickedSymbol] = useState('');
   const [data, setData] = useState([]);
-  const [symbolName, setSymbolName] = useState("");
+  const [symbolName, setSymbolName] = useState('');
 
   const [value, setValue] = React.useState(2);
 
@@ -120,18 +118,18 @@ const SymbolChart = () => {
   );
 
   return (
-    <Card className={classes.root} id="mainChartCard">
+    <Card className={classes.root} id='mainChartCard'>
       <CardContent>
-        <h1 className="title">{symbolName}</h1>
+        <h1 className='title'>{symbolName}</h1>
         <AreaChart
           data={spchartData}
           min={spchartMin}
           points={false}
-          xtitle="Time of day"
-          ytitle="Average Price"
-          colors={["#D7A02B", "#D7A02B"]}
+          xtitle='Time of day'
+          ytitle='Average Price'
+          colors={['#D7A02B', '#D7A02B']}
           library={{
-            animation: { duration: 1500, easing: "linear" },
+            animation: { duration: 1500, easing: 'linear' },
             scales: {
               yAxes: [
                 {
@@ -146,21 +144,21 @@ const SymbolChart = () => {
         />
         <div style={{ width: 800 }}>
           <Autocomplete
-            id="stockInput"
+            id='stockInput'
             onInputChange={handleInput}
             onChange={setProperInput}
             options={searchArray}
-            getOptionLabel={(stock) => stock.symbol + " " + stock.securityName}
+            getOptionLabel={(stock) => stock.symbol + ' ' + stock.securityName}
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Select Company Ticker"
-                margin="normal"
-                variant="outlined"
+                label='Select Company Ticker'
+                margin='normal'
+                variant='outlined'
               />
             )}
           />
-          <Button variant="contained" color="primary">
+          <Button variant='contained' color='primary'>
             Get Information
           </Button>
         </div>

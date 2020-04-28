@@ -67,7 +67,13 @@ const Login = (props) => {
   const classes = useStyles();
 
   const authContext = useContext(AuthContext);
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const {
+    login,
+    error,
+    clearErrors,
+    isAuthenticated,
+    setLoading,
+  } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {

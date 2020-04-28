@@ -7,6 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
+  LOADING_FALSE,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -88,6 +89,9 @@ const AuthState = (props) => {
   // clear errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
+  // set loading false
+  const setLoading = () => dispatch({ type: LOADING_FALSE });
+
   return (
     <AuthContext.Provider
       value={{
@@ -101,6 +105,7 @@ const AuthState = (props) => {
         login,
         logout,
         clearErrors,
+        setLoading,
       }}>
       {props.children}
     </AuthContext.Provider>
