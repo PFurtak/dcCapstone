@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import FundContext from '../context/funds/fundContext';
-import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MaterialTable from 'material-table';
-import TableFooter from '@material-ui/core/TableFooter';
 
 const InputFund = () => {
   const fundContext = useContext(FundContext);

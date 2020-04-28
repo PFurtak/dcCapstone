@@ -102,7 +102,6 @@ const ResponsiveDrawer = (props) => {
             <Link to='/createfund'>Create Fund</Link>
           </ListItemText>
         </ListItem>
-
         <ListItem onClick={onClick} button>
           <ListItemIcon>
             <i class='material-icons'>meeting_room</i>

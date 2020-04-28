@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import { debounce, classList } from "../../Utils";
-import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import Typography from "@material-ui/core/Typography";
-import { NavLink } from "react-router-dom";
-import ScrollTo from "../common/ScrollTo";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { debounce, classList } from '../../Utils';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import Typography from '@material-ui/core/Typography';
 
 class TopBar extends Component {
   state = {
@@ -18,13 +17,13 @@ class TopBar extends Component {
   componentDidMount() {
     if (window) {
       this.handleScrollRef = this.handleScroll();
-      window.addEventListener("scroll", this.handleScrollRef);
+      window.addEventListener('scroll', this.handleScrollRef);
     }
   }
 
   componentWillUnmount() {
     if (window) {
-      window.removeEventListener("scroll", this.handleScrollRef);
+      window.removeEventListener('scroll', this.handleScrollRef);
     }
   }
 
@@ -44,76 +43,41 @@ class TopBar extends Component {
   };
 
   render() {
-    let toggleIcon = this.state.isClosed ? "menu" : "close";
+    let toggleIcon = this.state.isClosed ? 'menu' : 'close';
     return (
-      <div className="landing">
+      <div className='landing'>
         <section
           className={classList({
             header: true,
-            "header-fixed": !this.state.isTop,
+            'header-fixed': !this.state.isTop,
             closed: this.state.isClosed,
-          })}
-        >
-          <div className="container header-container">
-            <div className="brand">
-              <Typography variant="h4">
-                <a href="/">
-                  {/* <img src="./assets/images/logo-full.png" alt="" /> */}
-                  Stonks.js
-                </a>
+          })}>
+          <div className='container header-container'>
+            <div className='brand'>
+              <Typography variant='h4'>
+                <Link to='/'>Stonks.js</Link>
               </Typography>
             </div>
-            {/* <ul className="navigation">
-            <li>
-              <NavLink to="/">Demos</NavLink>
-            </li>
-            <li>
-              <ScrollTo to="intro1" onScroll={this.close}>
-                Hello
-              </ScrollTo>
-            </li>
-            <li>
-              <ScrollTo to="portfolio1" onScroll={this.close}>
-                Works
-              </ScrollTo>
-            </li>
-            <li>
-              <ScrollTo to="service1" onScroll={this.close}>
-                Service
-              </ScrollTo>
-            </li>
 
-            <li>
-              <ScrollTo to="pricing1" onScroll={this.close}>
-                Pricing
-              </ScrollTo>
-            </li>
-            <li>
-              <ScrollTo to="contact1" onScroll={this.close}>
-                Contact
-              </ScrollTo>
-            </li>
-          </ul> */}
-            <div className="m-auto" />
-            <ul className="navigation">
+            <div className='m-auto' />
+            <ul className='navigation'>
               <li>
-                <a href="/signup">
-                  <AssignmentIcon className="mr-16" />
+                <Link to='/signup'>
+                  <AssignmentIcon className='mr-16' />
                   Sign Up
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/login">
-                  <VpnKeyIcon className="mr-16" /> Log In
-                </a>
+                <Link to='login'>
+                  <VpnKeyIcon className='mr-16' /> Log In
+                </Link>
               </li>
             </ul>
             <IconButton
-              className="header__toggle"
+              className='header__toggle'
               onClick={() => {
                 this.setState({ isClosed: !this.state.isClosed });
-              }}
-            >
+              }}>
               <Icon>{toggleIcon}</Icon>
             </IconButton>
           </div>

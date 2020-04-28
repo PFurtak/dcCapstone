@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { scrollTo } from "../../Utils";
+import React, { Component } from 'react';
+import { scrollTo } from '../../Utils';
 
 class ScrollTo extends Component {
   state = {};
@@ -8,14 +8,13 @@ class ScrollTo extends Component {
     return (
       <a
         href={`#${to}`}
-        onClick={e => {
+        onClick={(e) => {
           scrollTo(to);
           if (onScroll) {
             e.preventDefault();
             onScroll(e);
           }
-        }}
-      >
+        }}>
         {this.props.children}
       </a>
     );
