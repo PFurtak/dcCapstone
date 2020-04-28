@@ -132,7 +132,7 @@ const MainChart = () => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} id="mainChartCard">
       <Tabs
         value={tabvalue}
         indicatorColor="primary"
