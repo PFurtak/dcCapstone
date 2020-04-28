@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -90,7 +91,7 @@ const ResponsiveDrawer = (props) => {
             <i class='material-icons'>dashboard</i>
           </ListItemIcon>
           <ListItemText>
-            <a href='/dashboard'>Dashboard</a>
+            <Link to='/dashboard'>Dashboard</Link>
           </ListItemText>
         </ListItem>
         <ListItem button>
@@ -98,7 +99,7 @@ const ResponsiveDrawer = (props) => {
             <i class='material-icons'>add</i>
           </ListItemIcon>
           <ListItemText>
-            <a href='/createfund'>Create Fund</a>
+            <Link to='/createfund'>Create Fund</Link>
           </ListItemText>
         </ListItem>
 

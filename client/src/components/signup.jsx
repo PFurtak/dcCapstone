@@ -1,40 +1,39 @@
-import React, { useState, useContext, useEffect } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import TopBar from "./sections/TopBar1";
-import { GreenButton, BlackLink } from "./styledComponents";
-import AuthContext from "../context/auth/authContext";
-import { CLEAR_ERRORS } from "../context/types";
+import React, { useState, useContext, useEffect } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import TopBar from './sections/TopBar1';
+import { GreenButton, BlackLink } from './styledComponents';
+import AuthContext from '../context/auth/authContext';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <BlackLink color="inherit" href="https://material-ui.com/">
+    <Typography variant='body2' color='textSecondary' align='center'>
+      {'Copyright © '}
+      <BlackLink color='inherit' href='https://material-ui.com/'>
         Stonks JS
-      </BlackLink>{" "}
+      </BlackLink>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   cssLabel: {
-    "&$cssFocused": {
-      color: "#2F2F2F",
+    '&$cssFocused': {
+      color: '#2F2F2F',
     },
   },
   cssOutlinedInput: {
-    "&$cssFocused $notchedOutline": {
-      borderColor: "#2F2F2F", //focused
+    '&$cssFocused $notchedOutline': {
+      borderColor: '#2F2F2F', //focused
     },
   },
   notchedOutline: {},
@@ -44,16 +43,16 @@ const useStyles = makeStyles((theme) => ({
 
   paper: {
     marginTop: theme.spacing(25),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "#D7A02B",
+    backgroundColor: '#D7A02B',
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -68,11 +67,16 @@ const SignUp = (props) => {
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    authContext.loadUser();
+    //eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/dashboard");
+      props.history.push('/dashboard');
     }
 
-    if (error === "User already exists") {
+    if (error === 'User already exists') {
       alert(error);
       clearErrors();
     }
@@ -80,10 +84,10 @@ const SignUp = (props) => {
   }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
   });
 
   const { firstname, lastname, email, password } = user;
@@ -93,12 +97,12 @@ const SignUp = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (
-      firstname === "" ||
-      lastname === "" ||
-      email === "" ||
-      password === ""
+      firstname === '' ||
+      lastname === '' ||
+      email === '' ||
+      password === ''
     ) {
-      alert("Please enter all fields");
+      alert('Please enter all fields');
     } else {
       register({
         firstname,
@@ -111,31 +115,31 @@ const SignUp = (props) => {
 
   return (
     <>
-      <div className="landing">
+      <div className='landing'>
         <TopBar />
       </div>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Sign up
           </Typography>
           <form className={classes.form} noValidate onSubmit={onSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="fname"
-                  name="firstname"
+                  autoComplete='fname'
+                  name='firstname'
                   value={firstname}
                   onChange={onChange}
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id='firstName'
+                  label='First Name'
                   InputLabelProps={{
                     classes: {
                       root: classes.cssLabel,
@@ -154,15 +158,15 @@ const SignUp = (props) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastname"
+                  id='lastName'
+                  label='Last Name'
+                  name='lastname'
                   value={lastname}
                   onChange={onChange}
-                  autoComplete="lname"
+                  autoComplete='lname'
                   InputLabelProps={{
                     classes: {
                       root: classes.cssLabel,
@@ -180,15 +184,15 @@ const SignUp = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
+                  id='email'
+                  label='Email Address'
+                  name='email'
                   value={email}
                   onChange={onChange}
-                  autoComplete="email"
+                  autoComplete='email'
                   InputLabelProps={{
                     classes: {
                       root: classes.cssLabel,
@@ -206,16 +210,16 @@ const SignUp = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant='outlined'
                   required
                   fullWidth
-                  name="password"
+                  name='password'
                   value={password}
                   onChange={onChange}
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
+                  label='Password'
+                  type='password'
+                  id='password'
+                  autoComplete='current-password'
                   InputLabelProps={{
                     classes: {
                       root: classes.cssLabel,
@@ -233,18 +237,17 @@ const SignUp = (props) => {
               </Grid>
             </Grid>
             <GreenButton
-              type="submit"
-              value="SignUp"
+              type='submit'
+              value='SignUp'
               fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
+              variant='contained'
+              color='primary'
+              className={classes.submit}>
               Sign Up
             </GreenButton>
-            <Grid container justify="flex-end">
+            <Grid container justify='flex-end'>
               <Grid item>
-                <BlackLink href="login" variant="body2">
+                <BlackLink href='login' variant='body2'>
                   Already have an account? Sign in
                 </BlackLink>
               </Grid>

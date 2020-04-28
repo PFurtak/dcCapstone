@@ -59,15 +59,15 @@ const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
   const { logout, user } = authContext;
 
-  const onClick = (e) => {
-    logout();
-    props.history.push('/login');
-  };
-
   useEffect(() => {
     authContext.loadUser();
     //eslint-disable-next-line
   }, []);
+
+  const onClick = (e) => {
+    logout();
+    props.history.push('/login');
+  };
 
   const { container } = props;
   const classes = useStyles();
@@ -164,7 +164,7 @@ const ResponsiveDrawer = (props) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <InputFund />
-        <MainChart/>
+        <MainChart />
       </main>
     </div>
   );
