@@ -12,9 +12,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-//Remove
-const axios = require('axios');
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -48,12 +45,11 @@ const MainChart = () => {
   };
   useEffect(async () => {
     try {
-      //fetch
-      const res = await axios.get(
+      const res = await fetch(
         'https://cloud.iexapis.com/stable/stock/spy/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9'
-      );
+      ).then((res) => res.json());
 
-      let spchartData = res.data;
+      let spchartData = res;
       spchartData = spchartData.reduce(function (r, e) {
         if (e.average !== null) {
           r[e.label] = e.average;
@@ -70,11 +66,11 @@ const MainChart = () => {
 
   useEffect(async () => {
     try {
-      //fetch
-      const res = await axios.get(
+      const res = await fetch(
         'https://cloud.iexapis.com/stable/stock/qqq/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9'
-      );
-      let naschartData = res.data;
+      ).then((res) => res.json());
+
+      let naschartData = res;
       naschartData = naschartData.reduce(function (r, e) {
         if (e.average !== null) {
           r[e.label] = e.average;
@@ -91,13 +87,13 @@ const MainChart = () => {
 
   useEffect(async () => {
     try {
-      //fetch
-      const res = await axios.get(
+      const res = await fetch(
         'https://cloud.iexapis.com/stable/stock/dia/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9'
-      );
+      ).then((res) => res.json());
+
       const minutes = [];
       const prices = [];
-      let diachartData = res.data;
+      let diachartData = res;
       diachartData = diachartData.reduce(function (r, e) {
         if (e.average !== null) {
           r[e.label] = e.average;
@@ -128,7 +124,7 @@ const MainChart = () => {
     );
   }
 
-  const [tabvalue, settabValue] = React.useState(0);
+  const [tabvalue, settabValue] = useState(0);
 
   const handletabChange = (event, newValue) => {
     settabValue(newValue);

@@ -7,7 +7,7 @@ import MaterialTable from 'material-table';
 
 const InputFund = () => {
   const fundContext = useContext(FundContext);
-  const { addFund, getFunds } = fundContext;
+  const { addFund } = fundContext;
 
   const [input, setInput] = useState('');
   const [searchArray, setSearchArray] = useState([]);
@@ -21,7 +21,7 @@ const InputFund = () => {
   const [showTable, setShowTable] = useState(true);
 
   const [fund, setFunds] = useState({
-    fundname: 'Hardcode test',
+    fundname: '',
     funds: [
       {
         fundname: '',
