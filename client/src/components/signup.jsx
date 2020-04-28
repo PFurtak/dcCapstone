@@ -11,7 +11,6 @@ import Container from '@material-ui/core/Container';
 import TopBar from './sections/TopBar1';
 import { GreenButton, BlackLink } from './styledComponents';
 import AuthContext from '../context/auth/authContext';
-import { CLEAR_ERRORS } from '../context/types';
 
 function Copyright() {
   return (
@@ -66,6 +65,11 @@ const SignUp = (props) => {
   const classes = useStyles();
 
   const { register, error, clearErrors, isAuthenticated } = authContext;
+
+  useEffect(() => {
+    authContext.loadUser();
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {

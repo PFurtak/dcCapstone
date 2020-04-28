@@ -70,6 +70,11 @@ const Login = (props) => {
   const { login, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
+    authContext.loadUser();
+    //eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/dashboard');
     }
