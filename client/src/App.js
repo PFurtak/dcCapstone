@@ -3,7 +3,7 @@ import './styles/sass/app.scss';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
-import DashBoard from './components/dashboard';
+import Dashboard from './components/pages/Dashboard';
 import NotFound from './components/pages/NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AuthState from './context/auth/AuthState';
@@ -17,7 +17,7 @@ const App = () => {
       <FundState>
         <Router>
           <Switch>
-            <PrivateRoute exact path='/dashboard' component={DashBoard} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
             <Route exact path='/createfund' component={CreateFund} />
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
