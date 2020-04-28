@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import DashNav from '../layout/DashNav';
 import AuthContext from '../../context/auth/authContext';
+import InputFund from '../InputFund';
 
 const CreateFund = () => {
   const authContext = useContext(AuthContext);
@@ -13,7 +14,12 @@ const CreateFund = () => {
     //eslint-disable-next-line
   }, []);
 
-  return <DashNav />;
+  return (
+    <div>
+      <DashNav />
+      <InputFund />
+    </div>
+  );
 };
 
 export default CreateFund;
