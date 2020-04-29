@@ -87,24 +87,6 @@ const MainChart = () => {
 
   useEffect(async () => {
     try {
-<<<<<<< HEAD
-      const res = await axios.get(
-        "https://cloud.iexapis.com/stable/stock/dia/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9"
-      );
-      let diachartData = res.data;
-      diachartData = diachartData.reduce(function(r, e) {
-         if(e.average !== null){
-             r[e.label] = e.average; 
-         }
-         return r
-     }, {})
-     let minArray = Object.values(diachartData); 
-     let min = Math.min(...minArray) - 3; 
-      await setdiachartMin(min)
-      await setdiaChartData(
-        diachartData
-      );
-=======
       const res = await fetch(
         'https://cloud.iexapis.com/stable/stock/dia/intraday-prices?token=pk_135e66691d174c4291a33989af3f52c9'
       ).then((res) => res.json());
@@ -121,7 +103,6 @@ const MainChart = () => {
       let min = Math.round(Math.min(...minArray) - 3);
       await setdiachartMin(min);
       await setdiaChartData(diachartData);
->>>>>>> a9adbe9acd85bba64da99db000507975651033ff
     } catch {}
   }, []);
   console.log(diachartData);
