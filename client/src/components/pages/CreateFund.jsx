@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import DashNav from '../layout/DashNav';
 import AuthContext from '../../context/auth/authContext';
 import InputFund from '../InputFund';
 
@@ -16,7 +15,6 @@ const CreateFund = () => {
 
   return (
     <div>
-      <DashNav />
       <InputFund />
     </div>
   );
