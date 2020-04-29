@@ -16,6 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { get } from 'mongoose';
 
 
 
@@ -54,34 +55,38 @@ const IndividualFund = props => {
       setExpanded(!expanded);
     };
 
-    const getLatestPrice = symbol => {
-        fetch(
-            `https://cloud.iexapis.com/stable/stock/${symbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
-          )
-          .then((response) => {
-            return response.json();
-          })          
+    const getLatestPrice = async(symbol) => {
+        let response = await fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`)
+        let data = await response.json()
+        return data          
     }
+
+
+//     const getPortfolioValue = async () => {
+//       let portvalue; 
+//       let currentPrice;
+//       fund.stocks.forEach(async(stock)=> ( 
+//           currentPrice = await getLatestPrice(stock.ticker), 
+//           console.log(currentPrice + "*" + stock.shares),
+//           portvalue = currentPrice * stock.shares
+//          ))  
+//          return portvalue    
+// }
+
     
-    const getPortfolioValue = () => {
+    const getPortfolioValue = async () => {
         let portvalue; 
         let currentPrice;
-        fund.stocks.forEach(stock=> ( 
-           portvalue = fetch(
-            `https://cloud.iexapis.com/stable/stock/${stock.ticker}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
-          )
-          .then((response) => {
-            return  response.json();
-          }) 
-          .then((data) => {
-              console.log(data)
-            portvalue = (data);
-          }), 
-           console.log(stock.ticker)
-        //    portvalue =  (stock.shares * currentPrice)
-           ))  
-           return portvalue    
+        for(let i =0; i < fund.stocks.length; i++){
+          console.log(fund.stocks[i].shares + "*" + await getLatestPrice(fund.stocks[i].ticker))
+          portvalue += (fund.stocks[i].shares * await getLatestPrice(fund.stocks[i].ticker))
+          console.log(portvalue)
+        }
+        return portvalue; 
+           
 }
+
+
 
 
     return (
@@ -98,7 +103,7 @@ const IndividualFund = props => {
         </Typography>
         ))}
         <div>
-        <p> portfolio value: {getPortfolioValue()} </p>
+        <p> portfolio value: {console.log(getPortfolioValue())} </p>
         </div>
       </CardContent>
       <CardActions disableSpacing>
