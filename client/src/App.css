@@ -3,7 +3,7 @@
 /* Global Styles */
 :root {
   --primary-color: #003699;
-  --dark-color: #333333;
+  --dark-color: #2e2e2e;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
@@ -301,9 +301,8 @@ img {
   padding: 0.7rem 2rem;
   z-index: 1;
   width: 100%;
-  border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
-  margin-bottom: 1rem;
+  border-bottom: solid 1px var(--dark-color);
+  margin-bottom: 0rem;
 }
 
 .navbar ul {

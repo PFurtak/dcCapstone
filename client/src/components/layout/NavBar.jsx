@@ -48,7 +48,7 @@ const Navbar = ({ title, icon }) => {
   );
 
   return (
-    <div className='navbar bg-primary'>
+    <div className='navbar bg-dark'>
       <h1>
         <Link to='/'> {title}</Link>
       </h1>
