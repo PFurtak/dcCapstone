@@ -5,9 +5,10 @@ import InputFund from '../InputFund';
 const CreateFund = () => {
   const authContext = useContext(AuthContext);
 
-  const { loadUser } = authContext;
+  const { setLoading, loadUser } = authContext;
 
   useEffect(() => {
+    setLoading();
     loadUser();
 
     //eslint-disable-next-line

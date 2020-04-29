@@ -8,9 +8,10 @@ const Dashboard = () => {
   const fundContext = useContext(FundContext);
 
   const { getFunds } = fundContext;
-  const { loadUser } = authContext;
+  const { loadUser, setLoading } = authContext;
 
   useEffect(() => {
+    setLoading();
     loadUser();
     getFunds();
 

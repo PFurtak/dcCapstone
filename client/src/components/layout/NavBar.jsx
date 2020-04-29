@@ -29,7 +29,7 @@ const Navbar = ({ title, icon }) => {
         </a>
       </li>
       <li>
-        <a onClick={onLogout} href='#!'>
+        <a onClick={onLogout} href='/login'>
           <span className='hide-sm'> Sign out</span>
         </a>
       </li>
