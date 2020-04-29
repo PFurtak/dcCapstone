@@ -9,8 +9,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AuthState from './context/auth/AuthState';
 import FundState from './context/funds/FundState';
 import CreateFund from './components/createfund';
-import TopBar from './components/sections/TopBar1';
-import PrivateRoute from './components/routing/PrivateRoute';
 
 function App() {
   return (
@@ -18,7 +16,7 @@ function App() {
       <FundState>
         <Router>
           <Switch>
-            <PrivateRoute exact path='/dashboard' component={DashBoard} />
+            <Route exact path='/dashboard' component={DashBoard} />
             <Route exact path='/createfund' component={CreateFund} />
             <Route exact path='/' component={HomePage} />
             <Route exact path='/login' component={Login} />
