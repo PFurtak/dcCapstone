@@ -63,7 +63,7 @@ const ResponsiveDrawer = (props) => {
     //eslint-disable-next-line
   }, []);
 
-  const onClick = (e) => {
+  const onClick = () => {
     logout();
     props.history.push('/login');
   };

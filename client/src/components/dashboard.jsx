@@ -18,7 +18,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AuthContext from '../context/auth/authContext';
 import FundContext from '../context/funds/fundContext';
 import MainChart from './MainChart';
+<<<<<<< HEAD
 import DashBoardFundList from './DashboardFundList'; 
+=======
+import SymbolChart from './symbolChart';
+>>>>>>> a9adbe9acd85bba64da99db000507975651033ff
 
 const drawerWidth = 240;
 
@@ -69,7 +73,7 @@ const ResponsiveDrawer = (props) => {
     //eslint-disable-next-line
   }, []);
 
-  const onClick = (e) => {
+  const onClick = () => {
     logout();
     props.history.push('/login');
   };
@@ -93,7 +97,7 @@ const ResponsiveDrawer = (props) => {
             <i class='material-icons'>dashboard</i>
           </ListItemIcon>
           <ListItemText>
-            <Link to='/dashboard'>Dashboard</Link>
+            <a href='/dashboard'>Dashboard</a>
           </ListItemText>
         </ListItem>
         <ListItem button>
@@ -101,7 +105,7 @@ const ResponsiveDrawer = (props) => {
             <i class='material-icons'>add</i>
           </ListItemIcon>
           <ListItemText>
-            <Link to='/createfund'>Create Fund</Link>
+            <a href='/createfund'>Create Fund</a>
           </ListItemText>
         </ListItem>
 
@@ -168,6 +172,7 @@ const ResponsiveDrawer = (props) => {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+<<<<<<< HEAD
         {/* <MainChart /> */}
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -199,6 +204,10 @@ const ResponsiveDrawer = (props) => {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
         <DashBoardFundList />
+=======
+        <MainChart />
+        <SymbolChart />
+>>>>>>> a9adbe9acd85bba64da99db000507975651033ff
       </main>
     </div>
   );
