@@ -17,7 +17,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { get } from 'mongoose';
-
+import PortfolioValue from './PortfolioValue'; 
 
 
 
@@ -75,17 +75,20 @@ const IndividualFund = props => {
 
     
     const getPortfolioValue = async () => {
-        let portvalue; 
+        let portvalue = 0; 
         let currentPrice;
-        for(let i =0; i < fund.stocks.length; i++){
-          console.log(fund.stocks[i].shares + "*" + await getLatestPrice(fund.stocks[i].ticker))
-          portvalue += (fund.stocks[i].shares * await getLatestPrice(fund.stocks[i].ticker))
-          console.log(portvalue)
+        // for(let i =0; i < fund.stocks.length; i++){
+        //   console.log(fund.stocks[i].shares + "*" + await getLatestPrice(fund.stocks[i].ticker))
+        //   portvalue += (fund.stocks[i].shares * await getLatestPrice(fund.stocks[i].ticker))
+        //   console.log(portvalue)
+        // }
+        for (const stock of fund.stocks){
+          portvalue += stock.shares * await getLatestPrice(stock.ticker)
+          console.log (portvalue)
         }
         return portvalue; 
-           
-}
-
+        }
+  
 
 
 
@@ -103,7 +106,7 @@ const IndividualFund = props => {
         </Typography>
         ))}
         <div>
-        <p> portfolio value: {console.log(getPortfolioValue())} </p>
+       <PortfolioValue fund={fund}/>
         </div>
       </CardContent>
       <CardActions disableSpacing>
