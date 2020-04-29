@@ -18,6 +18,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { get } from 'mongoose';
 import PortfolioValue from './PortfolioValue'; 
+import PortfolioGains from './PortfolioGain'
 
 
 
@@ -100,13 +101,14 @@ const IndividualFund = props => {
         subheader={fund.fundname}
       />
       <CardContent>
-          {fund.stocks.map(stock=> ( 
+          {/* {fund.stocks.map(stock=> ( 
         <Typography key={stock._id} variant="body2" color="textSecondary" component="p">
           {stock.security}
         </Typography>
-        ))}
+        ))} */}
         <div>
        <PortfolioValue fund={fund}/>
+       <PortfolioGains fund={fund}/> 
         </div>
       </CardContent>
       <CardActions disableSpacing>

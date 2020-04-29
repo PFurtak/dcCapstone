@@ -171,6 +171,7 @@ const ResponsiveDrawer = (props) => {
         <div className={classes.toolbar} />
         <MainChart />
         <SymbolChart />
+        <DashBoardFundList/>
       </main>
     </div>
   );
