@@ -1,5 +1,7 @@
 import React from 'react';
 import './styles/sass/app.scss';
+import './App.css';
+import NavBar from './components/layout/NavBar';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
@@ -16,6 +18,7 @@ const App = () => {
     <AuthState>
       <FundState>
         <Router>
+          <NavBar />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
