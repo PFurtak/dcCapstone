@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,7 +17,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AuthContext from '../context/auth/authContext';
 import FundContext from '../context/funds/fundContext';
 import MainChart from './MainChart';
-import DashBoardFundList from './DashboardFundList'; 
+import DashBoardFundList from './DashboardFundList';
 import SymbolChart from './symbolChart';
 
 const drawerWidth = 240;
@@ -61,9 +60,10 @@ const ResponsiveDrawer = (props) => {
   const fundContext = useContext(FundContext);
 
   const { getFunds } = fundContext;
-  const { logout, loadUser, user } = authContext;
+  const { logout, loadUser, user, setLoading } = authContext;
 
   useEffect(() => {
+    setLoading();
     loadUser();
     getFunds();
 
@@ -171,7 +171,7 @@ const ResponsiveDrawer = (props) => {
         <div className={classes.toolbar} />
         <MainChart />
         <SymbolChart />
-        <DashBoardFundList/>
+        <DashBoardFundList />
       </main>
     </div>
   );
