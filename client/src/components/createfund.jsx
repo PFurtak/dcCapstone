@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResponsiveDrawer = (props) => {
   const authContext = useContext(AuthContext);
+
   const { logout, user, setLoading, loadUser } = authContext;
 
   useEffect(() => {
@@ -64,7 +65,6 @@ const ResponsiveDrawer = (props) => {
 
   const onClick = () => {
     logout();
-    props.history.push('/login');
   };
 
   const { container } = props;
@@ -98,11 +98,13 @@ const ResponsiveDrawer = (props) => {
           </ListItemText>
         </ListItem>
 
-        <ListItem onClick={onClick} button>
+        <ListItem button>
           <ListItemIcon>
             <i class='material-icons'>meeting_room</i>
           </ListItemIcon>
-          <ListItemText>Logout</ListItemText>
+          <a onClick={onClick} href='/login'>
+            <ListItemText>Logout</ListItemText>
+          </a>
         </ListItem>
       </List>
       <Divider />
