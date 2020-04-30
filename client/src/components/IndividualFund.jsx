@@ -27,8 +27,8 @@ import FundTable from './fundTable';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-    //   maxWidth: 345,
-    marginBottom: 25, 
+    maxWidth: 1150,
+    marginTop: 25, 
     },
     media: {
       height: 0,
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
       transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
+        duration: theme.transitions.duration.shortest
       }),
     },
     expandOpen: {
@@ -60,59 +60,75 @@ const IndividualFund = props => {
     };
 
     const getLatestPrice = async(symbol) => {
-        let response = await fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`)
+        let response = await fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/quote/iexRealtimePrice?token=pk_135e66691d174c4291a33989af3f52c9`)
         let data = await response.json()
         return data          
     }
 
+    const getOpeningPrice = async(symbol) => {
+      let response = await fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/quote/previousClose?token=pk_135e66691d174c4291a33989af3f52c9`)
+      let data = await response.json()
+      data = data
+      return data          
+  }
+
     useEffect(
       async function buildTable() { 
         let fundObj = {}; 
+        let totObj = {
+          security: "Total", 
+          dollarValue: 0,
+          originalInvestment: 0,
+          totalGain: 0,
+          totalGainPercent: 0,
+          dayGain: 0,
+          dayGainPercent: 0
+        }; 
         let tempArray = []; 
           for (const stock of fund.stocks){ 
                 fundObj = {
                   security: stock.security, 
-                  ticker: stock.ticker
+                  ticker: stock.ticker, 
+                  priceWhenAdded: stock.priceWhenAdded, 
+                  amount: stock.amount, 
+                  shares: stock.shares, 
+                  dateWhenAdded: stock.dateWhenAdded,
+                  lastPrice: await getLatestPrice(stock.ticker)
               }
-              fundObj.lastPrice = await getLatestPrice(stock.ticker)
+              fundObj.originalInvestment = fundObj.priceWhenAdded * stock.shares
+              fundObj.dollarValue = fundObj.lastPrice * stock.shares
+              fundObj.totalGain = fundObj.dollarValue - fundObj.originalInvestment
+              fundObj.totalGainPercent = (fundObj.dollarValue - fundObj.originalInvestment)/fundObj.originalInvestment * 100;
+              fundObj.dayGain = fundObj.lastPrice - await getOpeningPrice(stock.ticker)
+              fundObj.dayGainPercent = fundObj.dayGain / await getOpeningPrice(stock.ticker) * 100; 
+              totObj.totalGain += fundObj.totalGain
+              totObj.originalInvestment += fundObj.originalInvestment 
+              totObj.dollarValue += fundObj.lastPrice * stock.shares
+
               tempArray.push(fundObj)
       }
+
+      totObj.totalGainPercent = (totObj.dollarValue - totObj.originalInvestment)/totObj.originalInvestment * 100; 
+
+      tempArray.map(stock=>{
+        stock.shares = parseFloat(stock.shares).toFixed(4)
+        stock.totalGainPercent = parseFloat(stock.totalGainPercent).toFixed(2) + "%";
+        
+
+      })
+      tempArray.push(totObj)
+      tempArray.map(stock=>{
+        stock.allocation = (stock.dollarValue / totObj.dollarValue) * 100 
+        stock.allocation = parseFloat(stock.allocation).toFixed(2) + "%"; 
+        stock.totalGainPercent = parseFloat(stock.totalGainPercent).toFixed(2); 
+        stock.dayGainPercent = parseFloat(stock.dayGainPercent).toFixed(2) + "%";
+
+
+      })
       setTableData(tempArray)
-      console.log(tableData)
+
     }, []
   )
-  console.log(tableData)
-
-
-//     const getPortfolioValue = async () => {
-//       let portvalue; 
-//       let currentPrice;
-//       fund.stocks.forEach(async(stock)=> ( 
-//           currentPrice = await getLatestPrice(stock.ticker), 
-//           console.log(currentPrice + "*" + stock.shares),
-//           portvalue = currentPrice * stock.shares
-//          ))  
-//          return portvalue    
-// }
-
-    
-    // const getPortfolioValue = async () => {
-    //     let portvalue = 0; 
-    //     let currentPrice;
-    //     // for(let i =0; i < fund.stocks.length; i++){
-    //     //   console.log(fund.stocks[i].shares + "*" + await getLatestPrice(fund.stocks[i].ticker))
-    //     //   portvalue += (fund.stocks[i].shares * await getLatestPrice(fund.stocks[i].ticker))
-    //     //   console.log(portvalue)
-    //     // }
-    //     for (const stock of fund.stocks){
-    //       portvalue += stock.shares * await getLatestPrice(stock.ticker)
-    //       console.log (portvalue)
-    //     }
-    //     return portvalue; 
-    //     }
-  
-
-
 
     return (
         <>
@@ -122,11 +138,6 @@ const IndividualFund = props => {
         subheader={fund.fundname}
       />
       <CardContent>
-          {/* {fund.stocks.map(stock=> ( 
-        <Typography key={stock._id} variant="body2" color="textSecondary" component="p">
-          {stock.security}
-        </Typography>
-        ))} */}
         <div>
        <PortfolioValue fund={fund}/>
        <PortfolioGains fund={fund}/> 
@@ -147,14 +158,6 @@ const IndividualFund = props => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-            again without stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don’t open.)
-          </Typography>
           <FundTable fund={fund} tableData={tableData}/>
         </CardContent>
       </Collapse>

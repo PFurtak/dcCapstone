@@ -35,8 +35,6 @@ const DailyGain = props => {
             for (const stock of fund.stocks){
               oldvalue += stock.shares * await getOpeningPrice(stock.ticker)
               portvalue += stock.shares * await getLatestPrice(stock.ticker)
-              console.log(stock.ticker+ "previous" + await getOpeningPrice(stock.ticker))
-              console.log(stock.ticker+ "current" + await getLatestPrice(stock.ticker))
 
             }
             portgain = ((portvalue - oldvalue) / oldvalue) * 100
