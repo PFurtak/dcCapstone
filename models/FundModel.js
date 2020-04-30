@@ -14,6 +14,7 @@ const FundSchema = mongoose.Schema({
     security: String, 
     ticker: String, 
     amount: Number, 
+    shares: Number, 
     priceWhenAdded: Number, 
     dateWhenAdded: Date
 

@@ -23,13 +23,14 @@ const InputFund = () => {
   const [showTable, setShowTable] = useState(true);
 
   const [fund, setFunds] = useState({
-    fundname: 'Hardcode test',
+    fundname: '',
     funds: [
       {
         fundname: '',
         security: '',
         ticker: '',
         amount: 0,
+        shares: 0, 
         priceWhenAdded: 0,
         dateWhenAdded: new Date(),
       },
@@ -51,6 +52,7 @@ const InputFund = () => {
     { title: 'Security', field: 'security' },
     { title: 'Ticker', field: 'ticker' },
     { title: 'Amount', field: 'amount', type: 'numeric' },
+    { title: 'Shares', field: 'shares', type: 'numeric' },
     { title: 'Price When Added', field: 'priceWhenAdded', type: 'numeric' },
     { title: 'Date When Added', field: 'dateWhenAdded', type: 'date' },
   ];
@@ -123,6 +125,7 @@ const InputFund = () => {
       security: pickedSecurity,
       ticker: pickedSymbol,
       amount: amountToInvest,
+      shares: shareAmount, 
       priceWhenAdded: quote,
       dateWhenAdded: new Date(),
     };
