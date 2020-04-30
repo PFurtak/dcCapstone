@@ -12,13 +12,14 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_ERRORS,
+  SET_LOADING,
 } from '../types';
 
 const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
-    loading: true,
+    loading: false,
     error: null,
     user: null,
   };
@@ -88,6 +89,9 @@ const AuthState = (props) => {
   // clear errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
+  // set loading
+  const setLoading = () => dispatch({ type: SET_LOADING });
+
   return (
     <AuthContext.Provider
       value={{
@@ -101,6 +105,7 @@ const AuthState = (props) => {
         login,
         logout,
         clearErrors,
+        setLoading,
       }}>
       {props.children}
     </AuthContext.Provider>
