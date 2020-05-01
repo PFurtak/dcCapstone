@@ -73,7 +73,7 @@ const InputFund = () => {
     function effectFunction() {
       async function getQuotes() {
         fetch(
-          `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
+          `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/iexRealtimePrice?token=pk_135e66691d174c4291a33989af3f52c9`
         )
           .then((res) => res.json())
           .then((data) => {
