@@ -7,6 +7,25 @@ import Button from "@material-ui/core/Button";
 import MaterialTable from "material-table";
 import TableFooter from "@material-ui/core/TableFooter";
 import { GreenButton } from "./styledComponents";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  cssLabel: {
+    "&$cssFocused": {
+      color: "#2F2F2F",
+    },
+  },
+  cssOutlinedInput: {
+    "&$cssFocused $notchedOutline": {
+      borderColor: "#2F2F2F", //focused
+      color: "#2F2F2F",
+    },
+  },
+  notchedOutline: {},
+  cssFocused: {},
+  error: {},
+  disabled: {},
+}));
 
 const InputFund = () => {
   const fundContext = useContext(FundContext);
@@ -22,6 +41,7 @@ const InputFund = () => {
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState("");
   const [showTable, setShowTable] = useState(true);
+  const classes = useStyles();
 
   const [fund, setFunds] = useState({
     fundname: "",
@@ -148,6 +168,12 @@ const InputFund = () => {
         variant="outlined"
         name={fundName}
         onChange={(e) => setFundName(e.target.value)}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
       />
       <Autocomplete
         id="stockInput"
@@ -161,6 +187,12 @@ const InputFund = () => {
             label="Select Company Ticker"
             margin="normal"
             variant="outlined"
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              },
+            }}
           />
         )}
       />
@@ -172,11 +204,23 @@ const InputFund = () => {
         InputProps={{
           readOnly: true,
         }}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
         variant="outlined"
       />
       <br />
       <br />
       <TextField
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
         id="amountToInvest"
         label="Amount to Invest"
         variant="outlined"
@@ -188,6 +232,12 @@ const InputFund = () => {
         id="amountOfShares"
         label="Amount of Shares"
         variant="outlined"
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
         InputProps={{
           readOnly: true,
         }}

@@ -837,3 +837,27 @@ body {
 #mainChartCard > div > div:nth-child(3) > div > div > div > fieldset {
   border-color: black;
 }
+
+#root > div > main > div:nth-child(2) > div:nth-child(1) > div > fieldset {
+  border-color: black;
+}
+#root
+  > div
+  > main
+  > div:nth-child(2)
+  > div.MuiAutocomplete-root.MuiAutocomplete-hasClearIcon.MuiAutocomplete-hasPopupIcon
+  > div
+  > div
+  > fieldset {
+  border-color: black;
+}
+#root > div > main > div:nth-child(2) > div:nth-child(4) > div > fieldset {
+  border-color: black;
+}
+#root > div > main > div:nth-child(2) > div:nth-child(7) > div > fieldset {
+  border-color: black;
+}
+
+#root > div > main > div:nth-child(2) > div:nth-child(10) > div > fieldset {
+  border-color: black;
+}
