@@ -6,6 +6,7 @@ const PortfolioGains = (props) => {
   const { funds } = fundContext;
   const { fund } = props;
   const [portfolioGains, setPortfolioGains] = useState(0);
+  const [portfolioGainsDollar, setPortfolioGainsDollar] = useState(0);
 
   const getLatestPrice = async (symbol) => {
     try {
@@ -33,6 +34,7 @@ const PortfolioGains = (props) => {
     }
     portgain = ((portvalue - oldvalue) / oldvalue) * 100;
     setPortfolioGains(portgain);
+    setPortfolioGainsDollar(portvalue - oldvalue);
   }, []);
 
   let gainStyle = {
