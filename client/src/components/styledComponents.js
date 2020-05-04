@@ -12,6 +12,7 @@ export const GreenButton = styled(Button)`
   :hover {
     background-color: #3b4225;
   }
+  margin: 2%;
 `;
 
 export const BlackLink = styled(Link)`
