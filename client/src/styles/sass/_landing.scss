@@ -833,3 +833,7 @@ body {
 #mainChartCard > div.MuiTabs-root > div > span {
   background-color: #576238;
 }
+
+#mainChartCard > div > div:nth-child(3) > div > div > div > fieldset {
+  border-color: black;
+}
