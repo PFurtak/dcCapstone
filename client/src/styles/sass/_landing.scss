@@ -821,3 +821,15 @@ body {
     width: 95%;
   }
 }
+
+#mainChartCard
+  > div.MuiTabs-root
+  > div
+  > div
+  > button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected {
+  color: black;
+}
+
+#mainChartCard > div.MuiTabs-root > div > span {
+  background-color: #576238;
+}
