@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import MaterialTable from "material-table";
 import TableFooter from "@material-ui/core/TableFooter";
+import { GreenButton } from "./styledComponents";
 
 const InputFund = () => {
   const fundContext = useContext(FundContext);
@@ -194,9 +195,9 @@ const InputFund = () => {
       />
       <br />
       <br />
-      <Button onClick={fundAdd} variant="contained" color="primary">
+      <GreenButton onClick={fundAdd} variant="contained" color="primary">
         Add Security
-      </Button>
+      </GreenButton>
 
       {/* {this.state.showGraph ?
            <LookupChart {...this.state} /> :
@@ -223,16 +224,20 @@ const InputFund = () => {
                 }),
             }}
           />{" "}
-          <Button onClick={postToDB} variant="contained" color="primary">
+          <GreenButton onClick={postToDB} variant="contained" color="primary">
             Save Fund
-          </Button>{" "}
+          </GreenButton>{" "}
         </>
       ) : (
         <>
           <h1> Fund Saved </h1>
-          <Button onClick={reloadTable} variant="contained" color="primary">
+          <GreenButton
+            onClick={reloadTable}
+            variant="contained"
+            color="primary"
+          >
             Create Fund
-          </Button>
+          </GreenButton>
         </>
       )}
     </div>
