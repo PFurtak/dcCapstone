@@ -164,6 +164,8 @@ const InputFund = () => {
     };
     setData([...data, newData]);
     setFunds({ ...data, newData });
+    setAmountToInvest(parseFloat(0));
+    setShareAmount(0);
   };
 
   return (
@@ -247,7 +249,7 @@ const InputFund = () => {
         InputProps={{
           readOnly: true,
         }}
-        value={shareAmount}
+        value={amountToInvest > 0 ? shareAmount : 0}
       />
       <br />
       <br />
