@@ -8,6 +8,8 @@ import MaterialTable from "material-table";
 import TableFooter from "@material-ui/core/TableFooter";
 import { GreenButton } from "./styledComponents";
 import { makeStyles } from "@material-ui/core/styles";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   cssLabel: {
@@ -26,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
   error: {},
   disabled: {},
 }));
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const InputFund = () => {
   const fundContext = useContext(FundContext);
@@ -280,7 +286,7 @@ const InputFund = () => {
         </>
       ) : (
         <>
-          <h1> Fund Saved </h1>
+          <Alert severity="success">Fund Saved</Alert>
           <GreenButton
             onClick={reloadTable}
             variant="contained"

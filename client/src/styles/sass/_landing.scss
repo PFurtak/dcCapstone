@@ -797,6 +797,9 @@ body {
     box-shadow: 3px 0 4px rgba(0, 0, 0, 0.2);
   }
 }
+#root > div > nav > div.PrivateHiddenCss-xsDown-367 > div > div {
+  background-image: url(/assets/images/home-bg-black.png);
+}
 
 #dashBar {
   background-color: #2f2f2f;
@@ -820,6 +823,14 @@ body {
   #mainChartCard {
     width: 95%;
   }
+}
+
+#root > div > nav > div.PrivateHiddenCss-xsDown-367 > div > div i {
+  color: white;
+}
+#root > div > nav > div.PrivateHiddenCss-xsDown-367 > div > div a {
+  text-decoration: none;
+  color: white;
 }
 
 #mainChartCard
