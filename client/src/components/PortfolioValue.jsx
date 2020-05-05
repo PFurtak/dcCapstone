@@ -27,7 +27,6 @@ const PortfolioValue = (props) => {
     let portvalue = 0;
     for (const stock of fund.stocks) {
       portvalue += stock.shares * (await getLatestPrice(stock.ticker));
-      console.log(stock.ticker);
     }
     setportfolioValue(portvalue);
   }, []);

@@ -67,7 +67,6 @@ const InputFund = () => {
       delete finalFundData[i].tableData;
     }
     let finalFinalFundData = { fundname: fundName, stocks: data };
-    console.log(finalFinalFundData);
     addFund(finalFinalFundData);
   };
 
@@ -265,7 +264,6 @@ const InputFund = () => {
                   setTimeout(() => {
                     resolve();
                     setData((prevState) => {
-                      console.log(prevState);
                       const thedata = [...prevState];
                       thedata.splice(thedata.indexOf(oldData), 1);
                       return thedata;

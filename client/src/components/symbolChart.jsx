@@ -1,31 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { AreaChart, PieChart } from "react-chartkick";
-import "chart.js";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import FundContext from "../context/funds/fundContext";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import TextField from "@material-ui/core/TextField";
-import { GreenButton } from "./styledComponents";
+import React, { useState, useEffect, useContext } from 'react';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { AreaChart, PieChart } from 'react-chartkick';
+import 'chart.js';
+import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import FundContext from '../context/funds/fundContext';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
+import { GreenButton } from './styledComponents';
 
 const useStyles = makeStyles({
   cssLabel: {
-    "&$cssFocused": {
-      color: "#2F2F2F",
+    '&$cssFocused': {
+      color: '#2F2F2F',
     },
   },
   cssOutlinedInput: {
-    "&$cssFocused $notchedOutline": {
-      borderColor: "#2F2F2F", //focused
-      color: "#2F2F2F",
+    '&$cssFocused $notchedOutline': {
+      borderColor: '#2F2F2F', //focused
+      color: '#2F2F2F',
     },
   },
   notchedOutline: {},
@@ -37,9 +37,9 @@ const useStyles = makeStyles({
     marginTop: 20,
   },
   bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
   },
   title: {
     fontSize: 14,
@@ -54,14 +54,14 @@ const SymbolChart = () => {
   const [spchartData, setspChartData] = useState([]);
   const [naschartData, setnasChartData] = useState([]);
   const [spchartMin, setspchartMin] = useState(0);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [searchArray, setSearchArray] = useState([]);
   const [quote, setQuote] = useState(0);
   const [pickedSecurity, setPickedSecurity] = useState({});
-  const [pickedSymbol, setPickedSymbol] = useState("");
+  const [pickedSymbol, setPickedSymbol] = useState('');
   const [data, setData] = useState([]);
-  const [symbolName, setSymbolName] = useState("");
-  const [symbolCall, setSymbolCall] = useState("");
+  const [symbolName, setSymbolName] = useState('');
+  const [symbolCall, setSymbolCall] = useState('');
 
   const [value, setValue] = React.useState(2);
 
@@ -82,11 +82,9 @@ const SymbolChart = () => {
   };
 
   const getSymbolInformation = () => {
-    console.log("Button Clicked");
     try {
       setSymbolCall(pickedSymbol);
     } catch {}
-    console.log(symbolCall);
   };
 
   useEffect(
@@ -116,8 +114,6 @@ const SymbolChart = () => {
     [symbolCall]
   );
 
-  console.log(spchartData);
-
   useEffect(
     function effectFunction() {
       function getSearch() {
@@ -128,7 +124,6 @@ const SymbolChart = () => {
           .then((data) => {
             setSearchArray(data);
             setSymbolName(data[0].securityName);
-            console.log(symbolName);
           })
           .catch((err) => console.log(err));
 
@@ -140,22 +135,22 @@ const SymbolChart = () => {
   );
 
   return (
-    <Card className={classes.root} id="mainChartCard">
+    <Card className={classes.root} id='mainChartCard'>
       <CardContent>
-        <h1 className="title">{symbolName}</h1>
+        <h1 className='title'>{symbolName}</h1>
         <div style={{ width: 500 }}>
           <Autocomplete
-            id="stockInput"
+            id='stockInput'
             onInputChange={handleInput}
             options={searchArray}
             onChange={setProperInput}
-            getOptionLabel={(stock) => stock.symbol + " " + stock.securityName}
+            getOptionLabel={(stock) => stock.symbol + ' ' + stock.securityName}
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Select Company Ticker"
-                margin="normal"
-                variant="outlined"
+                label='Select Company Ticker'
+                margin='normal'
+                variant='outlined'
                 InputLabelProps={{
                   classes: {
                     root: classes.cssLabel,
@@ -173,10 +168,9 @@ const SymbolChart = () => {
             }}
           />
           <GreenButton
-            variant="contained"
-            color="primary"
-            onClick={getSymbolInformation}
-          >
+            variant='contained'
+            color='primary'
+            onClick={getSymbolInformation}>
             Get Information
           </GreenButton>
         </div>
@@ -184,11 +178,11 @@ const SymbolChart = () => {
           data={spchartData}
           min={spchartMin}
           points={false}
-          xtitle="Time of day"
-          ytitle="Average Price"
-          colors={["#D7A02B", "#D7A02B"]}
+          xtitle='Time of day'
+          ytitle='Average Price'
+          colors={['#D7A02B', '#D7A02B']}
           library={{
-            animation: { duration: 1500, easing: "linear" },
+            animation: { duration: 1500, easing: 'linear' },
             scales: {
               yAxes: [
                 {

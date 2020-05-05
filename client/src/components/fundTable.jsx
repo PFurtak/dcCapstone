@@ -11,7 +11,6 @@ const FundTable = (props) => {
       `https://cloud.iexapis.com/stable/stock/${symbol}/quote/iexRealtimePrice?token=pk_135e66691d174c4291a33989af3f52c9`
     );
     let data = await response.json();
-    console.log('current' + data);
     return data;
   };
 
