@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import FundContext from "../context/funds/fundContext";
+import React, { useContext, useEffect, useState } from 'react';
+import FundContext from '../context/funds/fundContext';
 
 const PortfolioValue = (props) => {
   const fundContext = useContext(FundContext);
@@ -36,12 +36,3 @@ const PortfolioValue = (props) => {
 };
 
 export default PortfolioValue;
-
-// const getPortfolioValue = async () => {
-//     let portvalue = 0;
-//     for (const stock of fund.stocks){
-//       portvalue += stock.shares * await getLatestPrice(stock.ticker)
-//       console.log("hello")
-//     }
-//     setportfolioValue(portvalue)
-//     }

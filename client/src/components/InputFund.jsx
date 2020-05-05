@@ -253,10 +253,6 @@ const InputFund = () => {
         Add Security
       </GreenButton>
 
-      {/* {this.state.showGraph ?
-           <LookupChart {...this.state} /> :
-           null
-        } */}
       {showTable ? (
         <>
           <MaterialTable
