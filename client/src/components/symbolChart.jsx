@@ -143,27 +143,6 @@ const SymbolChart = () => {
     <Card className={classes.root} id="mainChartCard">
       <CardContent>
         <h1 className="title">{symbolName}</h1>
-        <AreaChart
-          data={spchartData}
-          min={spchartMin}
-          points={false}
-          xtitle="Time of day"
-          ytitle="Average Price"
-          colors={["#D7A02B", "#D7A02B"]}
-          library={{
-            animation: { duration: 1500, easing: "linear" },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    maxTicksLimit: 20,
-                    stepSize: 1,
-                  },
-                },
-              ],
-            },
-          }}
-        />
         <div style={{ width: 500 }}>
           <Autocomplete
             id="stockInput"
@@ -201,6 +180,27 @@ const SymbolChart = () => {
             Get Information
           </GreenButton>
         </div>
+        <AreaChart
+          data={spchartData}
+          min={spchartMin}
+          points={false}
+          xtitle="Time of day"
+          ytitle="Average Price"
+          colors={["#D7A02B", "#D7A02B"]}
+          library={{
+            animation: { duration: 1500, easing: "linear" },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    maxTicksLimit: 20,
+                    stepSize: 1,
+                  },
+                },
+              ],
+            },
+          }}
+        />
       </CardContent>
     </Card>
   );
