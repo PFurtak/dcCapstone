@@ -1,11 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
 import FundContext from '../context/funds/fundContext';
-import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import MaterialTable from 'material-table';
-import TableFooter from '@material-ui/core/TableFooter';
+import { GreenButton } from './styledComponents';
+import { makeStyles } from '@material-ui/core/styles';
+import MuiAlert from '@material-ui/lab/Alert';
+
+const useStyles = makeStyles((theme) => ({
+  cssLabel: {
+    '&$cssFocused': {
+      color: '#2F2F2F',
+    },
+  },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: '#2F2F2F', //focused
+      color: '#2F2F2F',
+    },
+  },
+  notchedOutline: {},
+  cssFocused: {},
+  error: {},
+  disabled: {},
+}));
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
 
 const InputFund = () => {
   const fundContext = useContext(FundContext);
@@ -21,6 +43,7 @@ const InputFund = () => {
   const [data, setData] = useState([]);
   const [fundName, setFundName] = useState('');
   const [showTable, setShowTable] = useState(true);
+  const classes = useStyles();
 
   const [fund, setFunds] = useState({
     fundname: '',
@@ -30,7 +53,7 @@ const InputFund = () => {
         security: '',
         ticker: '',
         amount: 0,
-        shares: 0, 
+        shares: 0,
         priceWhenAdded: 0,
         dateWhenAdded: new Date(),
       },
@@ -44,7 +67,6 @@ const InputFund = () => {
       delete finalFundData[i].tableData;
     }
     let finalFinalFundData = { fundname: fundName, stocks: data };
-    console.log(finalFinalFundData);
     addFund(finalFinalFundData);
   };
 
@@ -72,13 +94,19 @@ const InputFund = () => {
   useEffect(
     function effectFunction() {
       async function getQuotes() {
-        fetch(
-          `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/iexRealtimePrice?token=pk_135e66691d174c4291a33989af3f52c9`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            setQuote(data);
-          });
+        try {
+          let response = await fetch(
+            `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/iexRealtimePrice?token=pk_135e66691d174c4291a33989af3f52c9`
+          );
+          let data = await response.json();
+          setQuote(data);
+        } catch {
+          let newResponse = await fetch(
+            `https://cloud.iexapis.com/stable/stock/${pickedSymbol}/quote/latestPrice?token=pk_135e66691d174c4291a33989af3f52c9`
+          );
+          let newData = await newResponse.json();
+          setQuote(newData);
+        }
       }
       getQuotes();
     },
@@ -125,12 +153,14 @@ const InputFund = () => {
       security: pickedSecurity,
       ticker: pickedSymbol,
       amount: amountToInvest,
-      shares: shareAmount, 
+      shares: shareAmount,
       priceWhenAdded: quote,
       dateWhenAdded: new Date(),
     };
     setData([...data, newData]);
     setFunds({ ...data, newData });
+    setAmountToInvest(parseFloat(0));
+    setShareAmount(0);
   };
 
   return (
@@ -141,6 +171,12 @@ const InputFund = () => {
         variant='outlined'
         name={fundName}
         onChange={(e) => setFundName(e.target.value)}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
       />
       <Autocomplete
         id='stockInput'
@@ -154,6 +190,12 @@ const InputFund = () => {
             label='Select Company Ticker'
             margin='normal'
             variant='outlined'
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              },
+            }}
           />
         )}
       />
@@ -165,11 +207,23 @@ const InputFund = () => {
         InputProps={{
           readOnly: true,
         }}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
         variant='outlined'
       />
       <br />
       <br />
       <TextField
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
         id='amountToInvest'
         label='Amount to Invest'
         variant='outlined'
@@ -181,21 +235,23 @@ const InputFund = () => {
         id='amountOfShares'
         label='Amount of Shares'
         variant='outlined'
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
         InputProps={{
           readOnly: true,
         }}
-        value={shareAmount}
+        value={amountToInvest > 0 ? shareAmount : 0}
       />
       <br />
       <br />
-      <Button onClick={fundAdd} variant='contained' color='primary'>
+      <GreenButton onClick={fundAdd} variant='contained' color='primary'>
         Add Security
-      </Button>
+      </GreenButton>
 
-      {/* {this.state.showGraph ?
-           <LookupChart {...this.state} /> :
-           null
-        } */}
       {showTable ? (
         <>
           <MaterialTable
@@ -208,7 +264,6 @@ const InputFund = () => {
                   setTimeout(() => {
                     resolve();
                     setData((prevState) => {
-                      console.log(prevState);
                       const thedata = [...prevState];
                       thedata.splice(thedata.indexOf(oldData), 1);
                       return thedata;
@@ -217,16 +272,19 @@ const InputFund = () => {
                 }),
             }}
           />{' '}
-          <Button onClick={postToDB} variant='contained' color='primary'>
+          <GreenButton onClick={postToDB} variant='contained' color='primary'>
             Save Fund
-          </Button>{' '}
+          </GreenButton>{' '}
         </>
       ) : (
         <>
-          <h1> Fund Saved </h1>
-          <Button onClick={reloadTable} variant='contained' color='primary'>
+          <Alert severity='success'>Fund Saved</Alert>
+          <GreenButton
+            onClick={reloadTable}
+            variant='contained'
+            color='primary'>
             Create Fund
-          </Button>
+          </GreenButton>
         </>
       )}
     </div>

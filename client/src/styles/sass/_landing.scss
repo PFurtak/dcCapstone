@@ -797,6 +797,9 @@ body {
     box-shadow: 3px 0 4px rgba(0, 0, 0, 0.2);
   }
 }
+#root > div > nav > div.PrivateHiddenCss-xsDown-367 > div > div {
+  background-image: url(/assets/images/home-bg-black.png);
+}
 
 #dashBar {
   background-color: #2f2f2f;
@@ -820,4 +823,104 @@ body {
   #mainChartCard {
     width: 95%;
   }
+}
+
+#root > div > nav > div.PrivateHiddenCss-xsDown-367 > div > div i {
+  color: white;
+}
+#root > div > nav > div.PrivateHiddenCss-xsDown-367 > div > div a {
+  text-decoration: none;
+  color: white;
+}
+
+#mainChartCard
+  > div.MuiTabs-root
+  > div
+  > div
+  > button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected {
+  color: black;
+}
+
+#mainChartCard > div.MuiTabs-root > div > span {
+  background-color: #576238;
+}
+
+#mainChartCard > div > div:nth-child(3) > div > div > div > fieldset {
+  border-color: black;
+}
+
+#root > div > main > div:nth-child(2) > div:nth-child(1) > div > fieldset {
+  border-color: black;
+}
+#root
+  > div
+  > main
+  > div:nth-child(2)
+  > div.MuiAutocomplete-root.MuiAutocomplete-hasClearIcon.MuiAutocomplete-hasPopupIcon
+  > div
+  > div
+  > fieldset {
+  border-color: black;
+}
+#root > div > main > div:nth-child(2) > div:nth-child(4) > div > fieldset {
+  border-color: black;
+}
+#root > div > main > div:nth-child(2) > div:nth-child(7) > div > fieldset {
+  border-color: black;
+}
+
+#root > div > main > div:nth-child(2) > div:nth-child(10) > div > fieldset {
+  border-color: black;
+}
+
+#root > div > nav > div.PrivateHiddenCss-xsDown-351 > div > div {
+  background-image: url(/assets/images/home-bg-black.png);
+}
+
+#root
+  > div
+  > nav
+  > div.PrivateHiddenCss-xsDown-351
+  > div
+  > div
+  > div
+  > ul
+  > div:nth-child(1)
+  > div.MuiListItemText-root
+  > span
+  > a {
+  color: white;
+  text-decoration: none;
+}
+
+#root
+  > div
+  > nav
+  > div.PrivateHiddenCss-xsDown-351
+  > div
+  > div
+  > div
+  > ul
+  > div:nth-child(2)
+  > div.MuiListItemText-root
+  > span
+  > a {
+  color: white;
+  text-decoration: none;
+}
+
+#root
+  > div
+  > nav
+  > div.PrivateHiddenCss-xsDown-351
+  > div
+  > div
+  > div
+  > ul
+  > div:nth-child(3)
+  > div.MuiListItemText-root
+  > span
+  > a {
+  color: white;
+  text-decoration: none;
 }

@@ -62,7 +62,6 @@ const MainChart = () => {
       await setspChartData(spchartData);
     } catch {}
   }, []);
-  console.log(spchartData);
 
   useEffect(async () => {
     try {
@@ -83,7 +82,6 @@ const MainChart = () => {
       await setnasChartData(naschartData);
     } catch {}
   }, []);
-  console.log(naschartData);
 
   useEffect(async () => {
     try {
@@ -105,7 +103,6 @@ const MainChart = () => {
       await setdiaChartData(diachartData);
     } catch {}
   }, []);
-  console.log(diachartData);
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;

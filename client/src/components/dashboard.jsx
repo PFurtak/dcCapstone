@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
@@ -90,7 +89,7 @@ const ResponsiveDrawer = (props) => {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <i class='material-icons'>dashboard</i>
+            <i className='material-icons'>dashboard</i>
           </ListItemIcon>
           <ListItemText>
             <a href='/dashboard'>Dashboard</a>
@@ -140,7 +139,6 @@ const ResponsiveDrawer = (props) => {
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation='css'>
           <Drawer
             container={container}
@@ -152,7 +150,7 @@ const ResponsiveDrawer = (props) => {
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}>
             {drawer}
           </Drawer>
@@ -179,10 +177,6 @@ const ResponsiveDrawer = (props) => {
 };
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   container: PropTypes.any,
 };
 
