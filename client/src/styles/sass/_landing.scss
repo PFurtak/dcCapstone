@@ -872,3 +872,55 @@ body {
 #root > div > main > div:nth-child(2) > div:nth-child(10) > div > fieldset {
   border-color: black;
 }
+
+#root > div > nav > div.PrivateHiddenCss-xsDown-351 > div > div {
+  background-image: url(/assets/images/home-bg-black.png);
+}
+
+#root
+  > div
+  > nav
+  > div.PrivateHiddenCss-xsDown-351
+  > div
+  > div
+  > div
+  > ul
+  > div:nth-child(1)
+  > div.MuiListItemText-root
+  > span
+  > a {
+  color: white;
+  text-decoration: none;
+}
+
+#root
+  > div
+  > nav
+  > div.PrivateHiddenCss-xsDown-351
+  > div
+  > div
+  > div
+  > ul
+  > div:nth-child(2)
+  > div.MuiListItemText-root
+  > span
+  > a {
+  color: white;
+  text-decoration: none;
+}
+
+#root
+  > div
+  > nav
+  > div.PrivateHiddenCss-xsDown-351
+  > div
+  > div
+  > div
+  > ul
+  > div:nth-child(3)
+  > div.MuiListItemText-root
+  > span
+  > a {
+  color: white;
+  text-decoration: none;
+}
